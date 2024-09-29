@@ -2,7 +2,7 @@ import Link from "next/link"
 
 const Onboarding = () => {
     return (
-        <div className="onboarding mx-5 my-3 flex justify-between border-b-2 pb-3">
+        <div className="onboarding mx-5 my-3 flex justify-between">
             <h2 className="mb-0">
                 Daily Path
             </h2>

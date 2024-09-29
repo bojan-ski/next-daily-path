@@ -5,3 +5,7 @@
 header{
     background-color: #FFF3E1;
 }
+
+footer .navbar-footer ul li.active a svg{
+    fill: #f97316;
+}

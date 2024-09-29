@@ -1,11 +1,12 @@
-const Footer = () => {
-    const year = new Date().getFullYear()
+// components
+import AppDeveloperRights from "./AppDeveloperRights"
+import FooterNavbar from "./FooterNavbar"
 
+const Footer = () => {   
     return (
         <footer className="text-center bg-black py-3">
-            <p className="mb-0 font-bold text-white ">
-                &copy; {year} BPdevelopment. All rights reserved.
-            </p>
+            <FooterNavbar/>
+            <AppDeveloperRights/>
         </footer>
     )
 }

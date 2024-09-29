@@ -1,12 +1,12 @@
 // components
-import Navbar from "./Navbar"
+import HeaderNavbar from "./HeaderNavbar"
 import Onboarding from "./Onboarding"
 
 const Header = () => {
   return (
     <header>
         <Onboarding/>
-        <Navbar/>
+        <HeaderNavbar/>
     </header>
   )
 }
