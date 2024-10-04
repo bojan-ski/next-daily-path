@@ -1,8 +1,11 @@
 'use client'
+// lib
+import userSignUp from "@/lib/userSignUp"
 // components
 import PageHeader from "@/components/PageHeader"
 import FormInput from "@/components/FormInput"
 import FormInputCheckbox from "@/components/FormInputCheckbox"
+
 
 const SignUp = () => {
   const handleSignUpUserSubmit = async e => {
@@ -12,12 +15,13 @@ const SignUp = () => {
     const enteredEmail = e.target.elements[1].value.trim()
     const enteredPassword = e.target.elements[2].value
 
-    console.log(enteredUsername);
-    console.log(enteredEmail);
-    console.log(enteredPassword);
+    // console.log(enteredUsername);
+    // console.log(enteredEmail);
+    // console.log(enteredPassword);
     
+    await userSignUp(enteredUsername, enteredEmail, enteredPassword)
 
-    // const response = await userCreateAccount(enteredUsername, enteredEmail, enteredPassword)
+    // const response = await userSignUp(enteredUsername, enteredEmail, enteredPassword)
 
     // if (response) {
     //   e.target.elements[0].value = ''
@@ -33,7 +37,7 @@ const SignUp = () => {
     <div className='sign-up-page'>
       <PageHeader pageTitle="Sign Up" />
 
-      <section className='sign-up-form bg-white w-2/4 mx-auto my-16 px-10 py-8 rounded-lg'>
+      <section className='sign-up-form bg-white w-1/2 mx-auto my-16 px-10 py-8 rounded-lg'>
         <form onSubmit={handleSignUpUserSubmit}>
           {/* login username */}
           <FormInput label='Username' name="signUpUsername" type='text' required={true} />
@@ -51,7 +55,7 @@ const SignUp = () => {
           <FormInputCheckbox linkTitle='Privacy Policy' linkUrl='privacy-policy' />
 
           {/* login submit btn */}
-          <button type="submit" className="bg-orange-300 rounded-md px-4 py-2 font-bold">
+          <button type="submit" className="bg-orange-300 rounded-md px-5 py-2 mt-5 font-bold hover:bg-orange-400">
             Sign Up
           </button>
         </form>
