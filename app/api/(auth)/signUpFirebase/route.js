@@ -8,6 +8,7 @@ export const POST = async (request) => {
   const { username, email, password } = await request.json()
 
   try {
+    // create account
     const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
     const newUser = userCredentials.user
 
@@ -15,6 +16,7 @@ export const POST = async (request) => {
       displayName: username
     })
 
+    // store in db
     const userCredentialsCopy = {
       username,
       email,
@@ -26,7 +28,7 @@ export const POST = async (request) => {
     // success message
     console.log('your account has been created');
 
-    return NextResponse.json({ "message": "all good" });
+    return NextResponse.json({ "message": "sign up - all good" });
   } catch (error) {
     // error message
     console.log(error);
