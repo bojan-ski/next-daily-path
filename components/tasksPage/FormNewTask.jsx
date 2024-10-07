@@ -14,7 +14,7 @@ const FormNewTask = () => {
     const addNewTaskData = addNewTaskAction.bind(null, userProfileDetails.userID)
 
     return (
-        <section className='new-task-form bg-orange-100 py-5 px-10 w-3/4 mx-auto rounded-xl'>
+        <section className='new-task-form bg-orange-100 py-5 px-10 mb-10 w-3/4 mx-auto rounded-xl'>
             <form ref={ref} action={async (formData) => {
                 await addNewTaskData(formData)
                 ref.current?.reset()

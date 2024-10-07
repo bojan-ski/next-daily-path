@@ -1,6 +1,7 @@
 // components
 import PageHeader from "@/components/PageHeader"
 import FormNewTask from "@/components/tasksPage/FormNewTask"
+import TasksList from "@/components/tasksPage/TasksList"
 
 const Tasks = () => {
   return (
@@ -12,6 +13,7 @@ const Tasks = () => {
 
         <FormNewTask/>
 
+        <TasksList/>
       </div>
     </div>
   )

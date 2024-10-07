@@ -2,7 +2,7 @@
 import { useContext, createContext, useState, useEffect } from "react";
 // firebase/firestore funcs
 import { auth } from "./firebase.config";
-import { onAuthStateChanged, signOut } from "firebase/auth"
+import { onAuthStateChanged } from "firebase/auth"
 
 const AppContext = createContext()
 
@@ -41,31 +41,9 @@ export const AppProvider = ({ children }) => {
         // console.log(userProfileDetails);
     }, [])
 
-    // log out user
-    const logOutUser = async () => {
-        if (window.confirm('Are you sure you want to log out')) {
-            try {
-                await signOut(auth)
-
-                setUserProfileDetails({
-                    userLoggedIn: false,
-                    userID: '',
-                    userUsername: '',
-                })
-
-                // success message
-                console.log('you have successfully logged out');
-            } catch (error) {
-                //error message
-                console.log(error);
-            }
-        }
-    }
-
     return <AppContext.Provider value={{
-        userProfileDetails, // OnboardingOptions
-        setUserProfileDetails,
-        logOutUser, // OnboardingOptions
+        userProfileDetails, // OnboardingOptions, TasksList
+        setUserProfileDetails, // SignOutBtn
     }}>
         {children}
     </AppContext.Provider>
