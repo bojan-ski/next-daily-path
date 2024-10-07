@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link"
 // lib
-import userResetPassword from "@/lib/userResetPassword"
+import userResetPassword from "@/lib/firebase/userResetPassword"
 // components
 import PageHeader from "@/components/PageHeader"
 import FormInput from "@/components/FormInput"

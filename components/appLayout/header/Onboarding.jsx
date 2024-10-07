@@ -1,20 +1,14 @@
-import Link from "next/link"
+// components
+import OnboardingOptions from "./OnboardingOptions"
 
 const Onboarding = () => {
     return (
         <div className="onboarding mx-5 my-3 flex justify-between">
-            <h2 className="mb-0">
+            <h2 className="mb-0 text-2xl font-bold">
                 Daily Path
             </h2>
 
-            <div>
-                <Link href='/sign-up' className='me-5'>
-                    Sign Up
-                </Link>
-                <Link href='/sign-in'>
-                Sign In
-                </Link>
-            </div>
+            <OnboardingOptions/>
         </div>
     )
 }

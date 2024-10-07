@@ -1,6 +1,6 @@
 'use client'
 // lib
-import userSignUp from "@/lib/userSignUp"
+import userSignUp from "@/lib/firebase/userSignUp"
 // components
 import PageHeader from "@/components/PageHeader"
 import FormAuth from "@/components/FormAuth"

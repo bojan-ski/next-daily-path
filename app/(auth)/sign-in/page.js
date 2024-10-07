@@ -3,7 +3,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { revalidatePath } from "next/cache"
 // lib
-import userSignIn from "@/lib/userSignIn"
+import userSignIn from "@/lib/firebase/userSignIn"
 // context
 import { useGlobalContext } from "@/app/context"
 // components
@@ -11,9 +11,12 @@ import PageHeader from "@/components/PageHeader"
 import FormAuth from "@/components/FormAuth"
 import FormInput from "@/components/FormInput"
 
+import { auth } from "@/app/firebase.config"
+import { signInWithEmailAndPassword } from "firebase/auth"
+
 const SignIn = () => {
-  const { userProfileDetails, setUserProfileDetails } = useGlobalContext()
   const router = useRouter()
+  const { userProfileDetails, setUserProfileDetails } = useGlobalContext()
 
   const handleSignInUserSubmit = async e => {
     e.preventDefault()
@@ -21,24 +24,27 @@ const SignIn = () => {
     const enteredEmail = e.target.elements[0].value
     const enteredPassword = e.target.elements[1].value
 
-    const response = await userSignIn(enteredEmail, enteredPassword)
+    const response = await signInWithEmailAndPassword(auth, enteredEmail, enteredPassword)
+
+    // const response = await userSignIn(enteredEmail, enteredPassword)
     // console.log(response.user);
 
-    if (response) {
-      setUserProfileDetails({
-        userLoggedIn: true,
-        userID: response.user.uid,
-        userUsername: response.user.displayName,
-      });
+    // if (response) {
+    //   setUserProfileDetails({
+    //     userLoggedIn: true,
+    //     userID: response.user.uid,
+    //     userUsername: response.user.displayName,
+    //   });
 
+    //   router.push('/tasks')
+    // }
+
+    if (response) {
+      e.target.elements[0].value = ''
+      e.target.elements[1].value = ''
+      // revalidatePath('/tasks')
       router.push('/tasks')
     }
-    // if (response) {
-    //   e.target.elements[0].value = ''
-    //   e.target.elements[1].value = ''
-    // revalidatePath('/tasks')
-    // router.push('/tasks')
-    // }
   }
 
   // console.log(userProfileDetails);  
