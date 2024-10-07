@@ -9,35 +9,36 @@ const AppContext = createContext()
 export const AppProvider = ({ children }) => {
     const [userProfileDetails, setUserProfileDetails] = useState({
         userLoggedIn: false,
-        userID: '',
+        // userID: '',
+        userID: 'xOJ6jCHn8cf4NvCh0X4oS0yXHb83',
         userUsername: '',
     })
 
-    const fetchUserDetails = () => {
-        onAuthStateChanged(auth, (user) => {
-            console.log(auth);
-            console.log(user);
-            if (user) {
-                setUserProfileDetails({
-                    userLoggedIn: true,
-                    userID: user.uid,
-                    userUsername: user.displayName,
-                });
-            } else {
-                setUserProfileDetails({
-                    userLoggedIn: false,
-                    userID: '',
-                    userUsername: '',
-                });
-            }
-        });
-    };
+    // const fetchUserDetails = () => {
+    //     onAuthStateChanged(auth, (user) => {
+    //         console.log(auth);
+    //         console.log(user);
+    //         if (user) {
+    //             setUserProfileDetails({
+    //                 userLoggedIn: true,
+    //                 userID: user.uid,
+    //                 userUsername: user.displayName,
+    //             });
+    //         } else {
+    //             setUserProfileDetails({
+    //                 userLoggedIn: false,
+    //                 userID: '',
+    //                 userUsername: '',
+    //             });
+    //         }
+    //     });
+    // };
 
-    useEffect(() => {
-        console.log('useEffect - context');        
-        fetchUserDetails()
-        // console.log(userProfileDetails);
-    }, [])    
+    // useEffect(() => {
+    //     console.log('useEffect - context');        
+    //     fetchUserDetails()
+    //     console.log(userProfileDetails);
+    // }, [])    
 
     return <AppContext.Provider value={{
         userProfileDetails,

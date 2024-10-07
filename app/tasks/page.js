@@ -1,6 +1,19 @@
+// components
+import PageHeader from "@/components/PageHeader"
+import FormNewTask from "@/components/tasksPage/FormNewTask"
+
 const Tasks = () => {
   return (
-    <div>Tasks</div>
+    <div className='tasks-page'>
+
+      <PageHeader pageTitle='Tasks' />
+
+      <div className="container">
+
+        <FormNewTask/>
+
+      </div>
+    </div>
   )
 }
 

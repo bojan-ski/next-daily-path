@@ -21,9 +21,9 @@ export default function RootLayout({ children }) {
           <main className="flex-1 bg-orange-50 py-8">
             {children}
           </main>
-        </AppProvider>
 
-        <Footer />
+          <Footer />
+        </AppProvider>
       </body>
     </html>
   );

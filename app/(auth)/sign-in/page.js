@@ -1,5 +1,7 @@
 'use client'
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { revalidatePath } from "next/cache"
 // lib
 import userSignIn from "@/lib/userSignIn"
 // context
@@ -8,8 +10,6 @@ import { useGlobalContext } from "@/app/context"
 import PageHeader from "@/components/PageHeader"
 import FormAuth from "@/components/FormAuth"
 import FormInput from "@/components/FormInput"
-
-import { useRouter } from "next/navigation"
 
 const SignIn = () => {
   const { userProfileDetails, setUserProfileDetails } = useGlobalContext()
@@ -22,7 +22,7 @@ const SignIn = () => {
     const enteredPassword = e.target.elements[1].value
 
     const response = await userSignIn(enteredEmail, enteredPassword)
-    console.log(response.user);
+    // console.log(response.user);
 
     if (response) {
       setUserProfileDetails({
@@ -36,10 +36,12 @@ const SignIn = () => {
     // if (response) {
     //   e.target.elements[0].value = ''
     //   e.target.elements[1].value = ''
+    // revalidatePath('/tasks')
+    // router.push('/tasks')
     // }
   }
 
-  console.log(userProfileDetails);  
+  // console.log(userProfileDetails);  
 
   return (
     <div className='sign-in-page'>

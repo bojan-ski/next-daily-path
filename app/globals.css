@@ -2,10 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* GENERAL */
+textarea{
+    resize: none;
+}
+
+/* HEADER */
 header{
     background-color: #FFF3E1;
 }
+/* MAIN */
 
+/* FOOTER */
 footer .navbar-footer ul li.active a svg{
     fill: #f97316;
 }
