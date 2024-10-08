@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dracula">
       <body className="flex flex-col min-h-screen">
         <AppProvider>
           <Header />
