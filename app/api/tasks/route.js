@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 // firebase/firestore funcs
-import { collection, doc, getDocs } from "firebase/firestore"
+import { collection, doc, getDocs, query, orderBy } from "firebase/firestore"
 import { db } from "@/app/firebase.config";
 
 export const GET = async (request) => {
@@ -11,9 +11,11 @@ export const GET = async (request) => {
     try {
         const userDocRef = doc(db, `users/${userID}`);
 
-        const tasksCollectionRef = collection(userDocRef, 'tasks');
+        const tasksCollectionRef = collection(userDocRef, 'tasks')
 
-        const querySnapshot = await getDocs(tasksCollectionRef);
+        const tasksQuery = query(tasksCollectionRef, orderBy("timestamp", "desc"));
+
+        const querySnapshot = await getDocs(tasksQuery)
 
         // Extract data from each document
         const tasksList = querySnapshot.docs.map(doc => ({

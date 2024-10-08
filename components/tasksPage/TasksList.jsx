@@ -4,44 +4,46 @@ import { useEffect, useState } from "react"
 import { useGlobalContext } from "@/app/context"
 // lib - firebase
 import getTasksList from "@/lib/firebase/getTasksList"
+// components
+import TaskItem from "./TaskItem"
 
 const TasksList = () => {
     const { userProfileDetails } = useGlobalContext()
     const [tasks, setTasks] = useState([]);
 
-    useEffect(() => {
-        console.log('useEffect - TasksList');
-        
+    const fetchTasks = async () => {
         if (!userProfileDetails.userID) return;
 
-        const fetchTasks = async () => {
-            const apiCall = await getTasksList(userProfileDetails.userID);
-            // console.log(apiCall);           
+        const apiCall = await getTasksList(userProfileDetails.userID);
+        // console.log(apiCall);           
 
-            if(!apiCall.error){
-                setTasks(apiCall);  
-            }else{
-                console.log(apiCall.error);                
-            }
-        };
+        if (!apiCall.error) {
+            setTasks(apiCall);
+        } else {
+            console.log(apiCall.error);
+        }
+    };
 
+    useEffect(() => {
+        console.log('useEffect - TasksList');
         fetchTasks();
-    }, [userProfileDetails.userID]);
+    }, []);
 
     // console.log(tasks);    
 
     return (
         <section className='tasks-list mb-10'>
-            <h2>Tasks List</h2>
             {tasks && tasks.length > 0 ? (
-                tasks.map(task => (
-                    <div key={task.docID}>
-                        <h2>{task.taskData.taskTitle}</h2>
-                        <p>{task.taskData.taskContent}</p>
-                    </div>
-                ))
+                <>
+                    <h2 className='text-stone-950 text-3xl text-center font-bold mb-7'>
+                        Tasks List
+                    </h2>
+                    {tasks.map(task => <TaskItem key={task.docID} task={task} onPageUpdate={fetchTasks} />)}
+                </>
             ) : (
-                <p>No tasks found.</p>
+                <h2 className='text-stone-950 text-stone-950 text-3xl text-center font-bold'>
+                    No tasks found
+                </h2>
             )}
         </section>
     )
