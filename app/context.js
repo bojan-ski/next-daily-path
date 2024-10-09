@@ -3,6 +3,9 @@ import { useContext, createContext, useState, useEffect } from "react";
 // firebase/firestore funcs
 import { auth } from "./firebase.config";
 import { onAuthStateChanged } from "firebase/auth"
+// lib - firebase
+import getTasksList from "@/lib/firebase/getTasksList"
+
 
 const AppContext = createContext()
 
@@ -11,14 +14,11 @@ export const AppProvider = ({ children }) => {
     const [userProfileDetails, setUserProfileDetails] = useState({
         userLoggedIn: false,
         userID: '',
-        // userID: 'xOJ6jCHn8cf4NvCh0X4oS0yXHb83',
         userUsername: '',
     })
 
     const fetchUserDetails = () => {
         onAuthStateChanged(auth, (user) => {
-            // console.log(auth);
-            // console.log(user);
             if (user) {
                 setUserProfileDetails({
                     userLoggedIn: true,
@@ -38,12 +38,30 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
         console.log('useEffect - context');
         fetchUserDetails()
-        // console.log(userProfileDetails);
     }, [])
 
+    // tasks list
+    const [tasks, setTasks] = useState([]);
+
+    const fetchTasks = async () => {
+        if (!userProfileDetails.userID) return;
+    
+        const apiCall = await getTasksList(userProfileDetails.userID);         
+    
+        if (!apiCall.error) {
+          setTasks(apiCall);
+          console.log('fetchTasks');
+        } else {
+          console.log(apiCall.error);
+        }
+      };
+
     return <AppContext.Provider value={{
-        userProfileDetails, // OnboardingOptions, TasksList
+        userProfileDetails, // OnboardingOptions
         setUserProfileDetails, // SignOutBtn
+        tasks, // TasksList, TaskItem
+        setTasks, // TaskItem
+        fetchTasks, // FormNewTask, TasksList
     }}>
         {children}
     </AppContext.Provider>

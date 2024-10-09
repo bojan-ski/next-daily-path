@@ -9,8 +9,7 @@ import FormInput from "../FormInput"
 
 const FormNewTask = () => {
     const ref = useRef(null)
-    const { userProfileDetails } = useGlobalContext()
-    // console.log(userProfileDetails.userID);    
+    const { userProfileDetails, fetchTasks } = useGlobalContext() 
     const addNewTaskData = addNewTaskAction.bind(null, userProfileDetails.userID)
 
     return (
@@ -18,6 +17,7 @@ const FormNewTask = () => {
             <form ref={ref} action={async (formData) => {
                 await addNewTaskData(formData)
                 ref.current?.reset()
+                fetchTasks()
             }}>
                 <div className="grid grid-cols-2 gap-10">
                     <div>

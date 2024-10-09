@@ -1,34 +1,17 @@
-import { useState } from "react"
 // context
 import { useGlobalContext } from "@/app/context"
+// lib - actions
+import { updateIsTaskCompleted } from "@/lib/actions";
+// components
+import EditTaskBtn from "./EditTaskBtn";
+import DeleteTaskBtn from "./DeleteTaskBtn";
 
-import { doc, updateDoc } from "firebase/firestore";
-import { db } from "@/app/firebase.config";
 
-const TaskItem = ({ task, onPageUpdate }) => {
-    const { userProfileDetails } = useGlobalContext()
+const TaskItem = ({ task }) => {
+    const { userProfileDetails, fetchTasks, tasks, setTasks } = useGlobalContext()
     const taskID = task.docID
     const userID = userProfileDetails.userID
-    const [isTaskCompleted, setIsTaskCompleted] = useState(task.taskData.isCompleted)
-
-    const updateTask = async (userID, taskID, isTaskCompleted) => {
-        try {
-            // Reference to the specific document (task) to update
-            const taskDocRef = doc(db, `users/${userID}/tasks/${taskID}`);
-
-            // Update the document with the new data
-            await updateDoc(taskDocRef, { isCompleted: isTaskCompleted });
-
-            // success message
-            console.log("task updated successfully!");
-
-            // update/refresh component -> tasks list
-            onPageUpdate()
-        } catch (error) {
-            // error message
-            console.error("Error updating document: ", error);
-        }
-    };
+    const updateTaskData = updateIsTaskCompleted.bind(null, userID, taskID)
 
     return (
         <div className={`collapse collapse-arrow my-3 ${task.taskData.isCompleted == false ? "bg-red-500" : 'bg-green-500'}`}>
@@ -47,30 +30,28 @@ const TaskItem = ({ task, onPageUpdate }) => {
                 </p>
 
                 <div className="task-options flex justify-between">
-                    <div>
-                        <button className='btn btn-sm btn-warning me-3'>
-                            Edit
-                        </button>
-                        <button className='btn btn-sm btn-error'>
-                            Delete
-                        </button>
-                    </div>
-
                     <div className="relative flex gap-x-3 items-center">
                         <input
                             className="h-4 w-4 rounded"
                             type="checkbox"
-                            checked={isTaskCompleted}
-                            onChange={(e) => {
+                            checked={task.taskData.isCompleted}
+                            onChange={async (e) => {
                                 const taskStatus = e.target.checked;
-                                setIsTaskCompleted(taskStatus);
-                                updateTask(userID, taskID, taskStatus);
+                                await updateTaskData(taskStatus)
+                                fetchTasks()
                             }}
                         />
                         <p>
                             Task completed
                         </p>
                     </div>
+
+                    {task.taskData.isCompleted == false && (
+                        <div>
+                            <EditTaskBtn userID={userID} taskID={taskID} task={task} tasks={tasks} setTasks={setTasks} />
+                            <DeleteTaskBtn userID={userID} taskID={taskID} tasks={tasks} setTasks={setTasks} fetchTasks={fetchTasks}/>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

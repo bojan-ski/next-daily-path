@@ -1,35 +1,17 @@
 'use client'
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 // context
 import { useGlobalContext } from "@/app/context"
-// lib - firebase
-import getTasksList from "@/lib/firebase/getTasksList"
 // components
 import TaskItem from "./TaskItem"
 
 const TasksList = () => {
-    const { userProfileDetails } = useGlobalContext()
-    const [tasks, setTasks] = useState([]);
-
-    const fetchTasks = async () => {
-        if (!userProfileDetails.userID) return;
-
-        const apiCall = await getTasksList(userProfileDetails.userID);
-        // console.log(apiCall);           
-
-        if (!apiCall.error) {
-            setTasks(apiCall);
-        } else {
-            console.log(apiCall.error);
-        }
-    };
-
+    const { tasks, fetchTasks } = useGlobalContext() 
+   
     useEffect(() => {
         console.log('useEffect - TasksList');
         fetchTasks();
     }, []);
-
-    // console.log(tasks);    
 
     return (
         <section className='tasks-list mb-10'>
@@ -38,10 +20,10 @@ const TasksList = () => {
                     <h2 className='text-stone-950 text-3xl text-center font-bold mb-7'>
                         Tasks List
                     </h2>
-                    {tasks.map(task => <TaskItem key={task.docID} task={task} onPageUpdate={fetchTasks} />)}
+                    {tasks.map(task => <TaskItem key={task.docID} task={task} />)}
                 </>
             ) : (
-                <h2 className='text-stone-950 text-stone-950 text-3xl text-center font-bold'>
+                <h2 className='text-stone-950 text-3xl text-center font-bold'>
                     No tasks found
                 </h2>
             )}

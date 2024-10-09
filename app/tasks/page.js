@@ -3,6 +3,8 @@ import PageHeader from "@/components/PageHeader"
 import FormNewTask from "@/components/tasksPage/FormNewTask"
 import TasksList from "@/components/tasksPage/TasksList"
 
+export const revalidation = 0;
+
 const Tasks = () => {
   return (
     <div className='tasks-page'>
@@ -11,9 +13,9 @@ const Tasks = () => {
 
       <div className="container">
 
-        <FormNewTask/>
+        <FormNewTask />
 
-        <TasksList/>
+        <TasksList />
       </div>
     </div>
   )
