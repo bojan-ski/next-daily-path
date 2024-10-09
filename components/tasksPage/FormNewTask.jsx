@@ -6,6 +6,8 @@ import { useGlobalContext } from "@/app/context"
 import { addNewTaskAction } from "@/lib/actions"
 // components
 import FormInput from "../FormInput"
+import FormTextArea from "../FormTextArea"
+import FormSubmitBtn from "../FormSubmitBtn"
 
 const FormNewTask = () => {
     const ref = useRef(null)
@@ -21,17 +23,15 @@ const FormNewTask = () => {
             }}>
                 <div className="grid grid-cols-2 gap-10">
                     <div>
-                        <FormInput label='New tasks' name='taskTitle' type='text' placeholder='Enter new task' required={true} maxLength={100} />
+                        <FormInput label='New tasks' name='taskTitle' type='text' placeholder='Enter new task' required={true} maxLength={50} />
 
-                        <input type="date" className="block" name="taskDate" id="taskDate" required />
+                        <FormInput label='Do date:' name='taskDate' type='date' required={true} />
 
-                        <button type="submit" className="bg-orange-300 rounded-md px-5 py-2 mt-4 font-bold hover:bg-orange-400">
-                            Add new task
-                        </button>
+                        <FormSubmitBtn btnTitle='Add new task'/>
                     </div>
 
                     <div>
-                        <textarea className="block w-full rounded-md border-0 px-3 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" name="taskContent" id="" rows='7' required />
+                        <FormTextArea name='taskContent' rows={7} minLength={10} maxLength={350} required={true}/>
                     </div>
                 </div>
             </form>

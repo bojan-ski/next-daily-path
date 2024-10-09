@@ -1,12 +1,12 @@
 import { useTransition } from "react"
 // lib - actions
-import { deleteTask } from "@/lib/actions"
+import { deleteTaskAction } from "@/lib/actions"
 
 const DeleteTaskBtn = ({ userID, taskID, tasks, setTasks }) => {   
     const [isPending, startTransition] = useTransition()
 
     const handleDeleteTask = () => {
-        startTransition(() => deleteTask(userID, taskID))
+        startTransition(() => deleteTaskAction(userID, taskID))
         const updatedTasksList = tasks.filter(task => task.docID !== taskID)
         setTasks(updatedTasksList)
     }    
