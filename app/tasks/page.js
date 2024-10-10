@@ -8,10 +8,9 @@ export const revalidation = 0;
 const Tasks = () => {
   return (
     <div className='tasks-page'>
-
-      <PageHeader pageTitle='Tasks' />
-
       <div className="container">
+
+        <PageHeader pageTitle='Tasks' />
 
         <FormNewTask />
 
