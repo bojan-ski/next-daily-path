@@ -14,13 +14,18 @@ const FormNewTask = () => {
     const { userProfileDetails, fetchTasks } = useGlobalContext() 
     const addNewTaskData = addNewTaskAction.bind(null, userProfileDetails.userID)
 
+    const createTaskAction = async (formData) =>{
+        const response = await addNewTaskData(formData)
+        if(response){
+            ref.current?.reset()
+            await fetchTasks()
+            console.log('new tasks created')
+        }        
+    }
+
     return (
         <section className='new-task-form bg-orange-100 py-5 px-10 mb-10 w-3/4 mx-auto rounded-xl'>
-            <form ref={ref} action={async (formData) => {
-                await addNewTaskData(formData)
-                ref.current?.reset()
-                fetchTasks()
-            }}>
+            <form ref={ref} action={createTaskAction}>
                 <div className="grid grid-cols-2 gap-10">
                     <div>
                         <FormInput label='New tasks' name='taskTitle' type='text' placeholder='Enter new task' required={true} maxLength={50} />

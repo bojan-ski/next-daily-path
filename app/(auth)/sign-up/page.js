@@ -1,13 +1,20 @@
 'use client'
-// lib
-import userSignUp from "@/lib/firebase/userSignUp"
+import { useRouter } from "next/navigation"
 // components
 import PageHeader from "@/components/PageHeader"
-import FormAuth from "@/components/FormAuth"
 import FormInput from "@/components/FormInput"
 import FormInputCheckbox from "@/components/FormInputCheckbox"
+import FormSubmitBtn from "@/components/FormSubmitBtn"
+// lib
+import userSignUp from "@/lib/firebase/userSignUp"
+// firebase funcs
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { doc, serverTimestamp, setDoc } from "firebase/firestore"
+import { auth, db } from "@/app/firebase.config"
 
-const SignUp = () => {  
+const SignUp = () => {
+  const router = useRouter()
+
   const handleSignUpUserSubmit = async e => {
     e.preventDefault()
 
@@ -15,17 +22,61 @@ const SignUp = () => {
     const enteredEmail = e.target.elements[1].value.trim()
     const enteredPassword = e.target.elements[2].value
 
-    const response = await userSignUp(enteredUsername, enteredEmail, enteredPassword)
-    console.log(response);
+    try {
+      // create account
+      const userCredentials = await createUserWithEmailAndPassword(auth, enteredEmail, enteredPassword)
+      const newUser = userCredentials.user
 
-    if (response) {
+      // update user - username
+      updateProfile(auth.currentUser, {
+        displayName: enteredUsername
+      })
+
+      // store in db
+      const userCredentialsCopy = {
+        enteredUsername,
+        enteredEmail,
+        timestamp: serverTimestamp()
+      }
+
+      await setDoc(doc(db, 'users', newUser.uid), userCredentialsCopy)
+
+      // success message
+      console.log('your account has been created');
+
+      // clear form fields
       e.target.elements[0].value = ''
       e.target.elements[1].value = ''
       e.target.elements[2].value = ''
       e.target.elements[3].checked = false
       e.target.elements[4].checked = false
+
+      // navigate user
+      router.push('/tasks')
+    } catch (error) {
+      // error message
+      console.log(error);
     }
   }
+
+  // const handleSignUpUserSubmit = async e => {
+  //   e.preventDefault()
+
+  //   const enteredUsername = e.target.elements[0].value.trim()
+  //   const enteredEmail = e.target.elements[1].value.trim()
+  //   const enteredPassword = e.target.elements[2].value
+
+  //   const response = await userSignUp(enteredUsername, enteredEmail, enteredPassword)
+  //   console.log(response);
+
+  //   if (response) {      
+  //     e.target.elements[0].value = ''
+  //     e.target.elements[1].value = ''
+  //     e.target.elements[2].value = ''
+  //     e.target.elements[3].checked = false
+  //     e.target.elements[4].checked = false
+  //   }
+  // }
 
   return (
     <div className='sign-up-page'>
@@ -33,7 +84,7 @@ const SignUp = () => {
 
       <section className='sign-up-form bg-white w-1/2 mx-auto my-16 px-10 py-8 rounded-lg'>
 
-        <FormAuth handleSubmit={handleSignUpUserSubmit} btnTitle='Sign Up'>
+        <form onSubmit={handleSignUpUserSubmit}>
           {/* sign up username */}
           <FormInput label='Username' name="signUpUsername" type='text' required={true} placeholder='Enter username' />
 
@@ -48,7 +99,10 @@ const SignUp = () => {
 
           {/* Privacy Policy checkbox */}
           <FormInputCheckbox linkTitle='Privacy Policy' linkUrl='privacy-policy' />
-        </FormAuth>        
+
+          {/* submit btn */}
+          <FormSubmitBtn btnTitle='Sign Up' />
+        </form>
       </section>
     </div>
   )

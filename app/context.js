@@ -57,7 +57,7 @@ export const AppProvider = ({ children }) => {
       };
 
     return <AppContext.Provider value={{
-        userProfileDetails, // OnboardingOptions
+        userProfileDetails, // OnboardingOptions, TasksList
         setUserProfileDetails, // SignOutBtn
         tasks, // TasksList, TaskItem
         setTasks, // TaskItem

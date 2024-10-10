@@ -6,12 +6,33 @@ import { useGlobalContext } from "@/app/context"
 import TaskItem from "./TaskItem"
 
 const TasksList = () => {
-    const { tasks, fetchTasks } = useGlobalContext() 
-   
+    const { userProfileDetails, tasks, fetchTasks } = useGlobalContext()
+
     useEffect(() => {
         console.log('useEffect - TasksList');
-        fetchTasks();
-    }, []);
+        const fetchData = async () => {
+            if (userProfileDetails.userLoggedIn && userProfileDetails.userID) {
+                console.log('useEffect - fetchTasks');
+                await fetchTasks();
+            }
+        };
+
+        fetchData();
+    }, [userProfileDetails.userID]);
+
+
+    // useEffect(() => {
+    //     console.log('useEffect - TasksList');
+    //     fetchTasks()
+    // }, []);
+
+    // useEffect(() => {
+    //     console.log('useEffect - TasksList');
+    //     const fetchData = async () => {
+    //         await fetchTasks();
+    //     };
+    //     fetchData();
+    // })
 
     return (
         <section className='tasks-list mb-10'>

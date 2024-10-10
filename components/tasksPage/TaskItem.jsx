@@ -39,7 +39,7 @@ const TaskItem = ({ task }) => {
                             onChange={async (e) => {
                                 const taskStatus = e.target.checked;
                                 await updateTaskData(taskStatus)
-                                fetchTasks()
+                                await fetchTasks()
                             }}
                         />
                         <p>

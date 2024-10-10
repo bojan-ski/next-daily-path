@@ -4,7 +4,8 @@ import { auth } from "@/app/firebase.config";
 import { signOut } from "firebase/auth";
 
 const SignOutBtn = ({ setUserProfileDetails }) => {    
-    const router = useRouter
+    const router = useRouter()
+
     const logOutUser = async () => {
         if (window.confirm('Are you sure you want to log out')) {
             try {
@@ -18,6 +19,9 @@ const SignOutBtn = ({ setUserProfileDetails }) => {
 
                 // success message
                 console.log('you have successfully logged out');
+
+                // navigate user
+                router.push('/')
             } catch (error) {
                 //error message
                 console.log(error);
