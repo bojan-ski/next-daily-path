@@ -1,7 +1,7 @@
 // context
 import { useGlobalContext } from "@/app/context"
 // lib - actions
-import { updateIsTaskCompletedAction } from "@/lib/actions";
+import { updateIsTaskCompletedAction } from "@/lib/actions/taskActions";
 // components
 import EditTaskBtn from "./EditTaskBtn";
 import DeleteTaskBtn from "./DeleteTaskBtn";

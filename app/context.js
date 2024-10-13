@@ -4,7 +4,7 @@ import { useContext, createContext, useState, useEffect } from "react";
 import { auth } from "./firebase.config";
 import { onAuthStateChanged } from "firebase/auth"
 // lib - firebase
-import getTasksList from "@/lib/firebase/getTasksList"
+// import getTasksList from "@/lib/firebase/getTasksList"
 
 
 const AppContext = createContext()
@@ -41,27 +41,28 @@ export const AppProvider = ({ children }) => {
     }, [])
 
     // tasks list
-    const [tasks, setTasks] = useState([]);
+    // const [tasks, setTasks] = useState([]);
 
-    const fetchTasks = async () => {
-        if (!userProfileDetails.userID) return;
-    
-        const apiCall = await getTasksList(userProfileDetails.userID);         
-    
-        if (!apiCall.error) {
-          setTasks(apiCall);
-          console.log('fetchTasks');
-        } else {
-          console.log(apiCall.error);
-        }
-      };
+    // const fetchTasks = async () => {
+    //     if (!userProfileDetails.userID) return;
+
+    //     const apiCall = await getTasksList(userProfileDetails.userID);
+
+    //     if (!apiCall.error) {
+    //         setTasks(apiCall);
+    //         console.log('fetchTasks');
+    //     } else {
+    //         console.log(apiCall.error);
+    //     }
+    // };
 
     return <AppContext.Provider value={{
-        userProfileDetails, // OnboardingOptions, TasksList
+        userProfileDetails, // OnboardingOptions, TasksList, Diary
         setUserProfileDetails, // SignOutBtn
-        tasks, // TasksList, TaskItem
-        setTasks, // TaskItem
-        fetchTasks, // FormNewTask, TasksList
+
+        // tasks, 
+        // setTasks,
+        // fetchTasks,
     }}>
         {children}
     </AppContext.Provider>

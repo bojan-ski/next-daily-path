@@ -1,5 +1,5 @@
 // lib - actions
-import { deleteTaskAction } from "@/lib/actions"
+import { deleteTaskAction } from "@/lib/actions/taskActions"
 
 const DeleteTaskBtn = ({ userID, taskID, tasks, setTasks }) => {
     const handleDeleteTask = async () => {

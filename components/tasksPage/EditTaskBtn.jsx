@@ -1,6 +1,6 @@
 import { useState } from "react";
 // lib - actions
-import { updateTaskDataAction } from "@/lib/actions";
+import { updateTaskDataAction } from "@/lib/actions/taskActions";
 // components
 import EditTaskModal from "./EditTaskModal";
 
