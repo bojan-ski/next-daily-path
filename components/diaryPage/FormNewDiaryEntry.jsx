@@ -7,6 +7,7 @@ import { addNewDiaryEntryAction } from "@/lib/actions/diaryActions"
 // components
 import FormTextArea from "@/components/FormTextArea"
 import FormSubmitBtn from "@/components/FormSubmitBtn"
+import FileInputImage from "../FileInputImage"
 
 const FormNewDiaryEntry = () => {
     const { userProfileDetails } = useGlobalContext()
@@ -35,48 +36,16 @@ const FormNewDiaryEntry = () => {
 
             <form className="text-center" action={addNewDiaryEntryData}>
 
-                <input className="w-1/2 mb-5" type="text" name='newDiaryEntryTitle' placeholder='Title' required={true} maxLength={50} />
+                <input className="block w-1/2 mx-auto my-7 rounded-md border-0 px-3 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="text" name='newDiaryEntryTitle' placeholder='Title' required={true} maxLength={50} />
 
                 {/* GRID ITEM ONE */}
                 <div className="grid grid-cols-2 gap-4 mb-5">
-
                     {/* new diary entry - img 1 */}
-                    <div className="mb-3">
-                        <label className="form-label text-black font-bold">
-                            Image 1 (size 1MB max)
-                        </label>
-
-                        {/* Hidden file input for image 1 */}
-                        <input
-                            className="hidden"
-                            type="file"
-                            name="newDiaryEntryImgOne"
-                            id="newDiaryEntryImgOne"
-                            onChange={(e) => onMutate(e, 'newDiaryEntryImgOne')}
-                            accept=".jpg,.png,.jpeg"
-                        />
-
-                        {/* Button to trigger file input for image 1 */}
-                        <button
-                            type="button"
-                            className="btn btn-primary"
-                            onClick={() => document.getElementById('newDiaryEntryImgOne').click()}
-                        >
-                            Add Image 1
-                        </button>
-
-                        {/* Image 1 preview */}
-                        {uploadedImagesData.newDiaryEntryImgOne && (
-                            <div className="mt-3">
-                                <img
-                                    src={URL.createObjectURL(uploadedImagesData.newDiaryEntryImgOne)}
-                                    alt="newDiaryEntryImgOne"
-                                    className="img-thumbnail"
-                                    style={{ width: '300px', height: '300px', objectFit: 'cover' }}
-                                />
-                            </div>
-                        )}
-                    </div>
+                    <FileInputImage
+                        image={uploadedImagesData.newDiaryEntryImgOne}
+                        onMutate={(e) => onMutate(e, 'newDiaryEntryImgOne')}
+                        inputId="newDiaryEntryImgOne"
+                    />
 
                     {/* new diary entry - content 1 */}
                     <FormTextArea
@@ -100,43 +69,11 @@ const FormNewDiaryEntry = () => {
                     />
 
                     {/* new diary entry - img 2 */}
-                    <div className="mb-3">
-
-                        <label className="form-label text-black font-bold">
-                            Image 2 (size 1MB max)
-                        </label>
-
-                        {/* Hidden file input for image 2 */}
-                        <input
-                            className="hidden"
-                            type="file"
-                            name="newDiaryEntryImgTwo"
-                            id="newDiaryEntryImgTwo"
-                            onChange={(e) => onMutate(e, 'newDiaryEntryImgTwo')}
-                            accept=".jpg,.png,.jpeg"
-                        />
-
-                        {/* Button to trigger file input for image 2 */}
-                        <button
-                            type="button"
-                            className="btn btn-primary"
-                            onClick={() => document.getElementById('newDiaryEntryImgTwo').click()}
-                        >
-                            Add Image 2
-                        </button>
-
-                        {/* Image 2 preview */}
-                        {uploadedImagesData.newDiaryEntryImgTwo && (
-                            <div className="mt-3">
-                                <img
-                                    src={URL.createObjectURL(uploadedImagesData.newDiaryEntryImgTwo)}
-                                    alt="newDiaryEntryImgTwo"
-                                    className="img-thumbnail"
-                                    style={{ width: '300px', height: '300px', objectFit: 'cover' }}
-                                />
-                            </div>
-                        )}
-                    </div>
+                    <FileInputImage
+                        image={uploadedImagesData.newDiaryEntryImgTwo}
+                        onMutate={(e) => onMutate(e, 'newDiaryEntryImgTwo')}
+                        inputId="newDiaryEntryImgTwo"
+                    />
                 </div>
 
                 {/* SUBMIT BTN */}

@@ -3,7 +3,7 @@ import { useRef } from "react"
 // context
 import { useGlobalContext } from "@/app/context"
 // lib - actions
-import { addNewTaskAction } from "@/lib/actions/actions"
+import { addNewTaskAction } from "@/lib/actions/taskActions"
 // components
 import FormInput from "../FormInput"
 import FormTextArea from "../FormTextArea"
