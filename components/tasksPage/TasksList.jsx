@@ -9,7 +9,6 @@ import TaskItem from "./TaskItem"
 import TasksListPagination from "./TasksListPagination"
 
 const TasksList = () => {
-    // const { userProfileDetails, tasks, fetchTasks } = useGlobalContext()
     const { userProfileDetails } = useGlobalContext()
     const itemsPerPage = 6;
     const { tasks, getTasksList, page } = useTasksPagination(userProfileDetails.userID, itemsPerPage);

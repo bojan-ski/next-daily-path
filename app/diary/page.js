@@ -1,13 +1,11 @@
 // components
-import PageHeader from "@/components/PageHeader"
+import DiaryEntries from "@/components/diaryPage/DiaryEntries"
 
 const Diary = () => {
   return (
     <div className='diary-page'>
       <div className="container">
-
-        <PageHeader pageTitle='Diary' />
-
+        <DiaryEntries/>
       </div>
     </div>
   )
