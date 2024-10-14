@@ -1,5 +1,4 @@
 // components
-import FormNewDiaryEntry from "@/components/diaryPage/FormNewDiaryEntry"
 import PageHeader from "@/components/PageHeader"
 
 const Diary = () => {
@@ -9,7 +8,6 @@ const Diary = () => {
 
         <PageHeader pageTitle='Diary' />
 
-        <FormNewDiaryEntry />
       </div>
     </div>
   )

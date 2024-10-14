@@ -10,10 +10,10 @@ const FooterNavbar = () => {
     return (
         <nav className="navbar-footer my-3 md:hidden">
             <ul className="flex justify-center">
-                {navigationLinksIcons.map(navigationLinkIcon => {                    
-                    return <li key={navigationLinkIcon.href} className={`mx-24 text-4xl font-semibold text-white ${pathname == navigationLinkIcon.href ? 'active' : ''}`}>
-                        <Link href={navigationLinkIcon.href}>
-                            {navigationLinkIcon.icon}
+                {navigationLinksIcons.map(({ href, icon, altPath }) => {                    
+                    return <li key={href} className={`mx-24 text-4xl font-semibold text-white ${pathname === href || pathname === altPath ? 'active' : ''}`}>
+                        <Link href={href}>
+                            {icon}
                         </Link>
                     </li>
                 })}
