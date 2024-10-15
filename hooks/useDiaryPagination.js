@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { collection, query, orderBy, startAfter, limit, getDocs } from "firebase/firestore";
+// firebase funcs
+import { collection, query, orderBy, startAfter, limit, getDocs, where } from "firebase/firestore";
 import { db } from "@/app/firebase.config";
 
 const useDiaryPagination = (userID) => {
@@ -8,16 +9,24 @@ const useDiaryPagination = (userID) => {
     const [lastVisible, setLastVisible] = useState(null);
     const [page, setPage] = useState(0);
 
-    const getDiaryEntries = async (pageNumber = 0, reset = false) => {
+    const getDiaryEntries = async (pageNumber = 0, searchTerm = '', reset = false) => {        
         try {
+            let queryParams = [
+                collection(db, `users/${userID}/diary`),
+                orderBy('timestamp', 'desc'),
+                limit(itemsPerPage)
+            ]
+
+            if (searchTerm && searchTerm.length > 0) {
+                queryParams.push(where('newDiaryEntryTitle', '==', searchTerm));
+            }
+
             let q;
 
             if (reset || pageNumber === 0) {
                 // Fetch the first page or reset to the first page
                 q = query(
-                    collection(db, `users/${userID}/diary`),
-                    orderBy('timestamp', 'desc'),
-                    limit(itemsPerPage)
+                    ...queryParams
                 );
                 // Reset the last and first visible documents
                 setLastVisible(null);
@@ -25,9 +34,7 @@ const useDiaryPagination = (userID) => {
                 // Fetch the next set based on the last visible document
                 if (lastVisible) {
                     q = query(
-                        collection(db, `users/${userID}/diary`),
-                        orderBy('timestamp', 'desc'),
-                        limit(itemsPerPage),
+                        ...queryParams,
                         startAfter(lastVisible)
                     );
                 }

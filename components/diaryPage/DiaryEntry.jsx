@@ -1,10 +1,8 @@
 import Image from "next/image"
 
 const DiaryEntry = ({ entry }) => {
-    // console.log(entry);
-
     return (
-        <div key={entry.id} className="mb-8">
+        <div key={entry.id} className="mb-10">
             <h2 className="text-4xl text-black font-bold text-center capitalize mb-7">
                 {entry.data.newDiaryEntryTitle}
             </h2>

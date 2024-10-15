@@ -50,9 +50,9 @@ const FormNewDiaryEntry = () => {
                     {/* new diary entry - content 1 */}
                     <FormTextArea
                         name="newDiaryEntryContentOne"
-                        rows={15}
+                        rows={27}
                         minLength={10}
-                        maxLength={1200}
+                        maxLength={2000}
                         required={true}
                     />
                 </div>
@@ -62,9 +62,9 @@ const FormNewDiaryEntry = () => {
                     {/* new diary entry - content 2 */}
                     <FormTextArea
                         name="newDiaryEntryContentTwo"
-                        rows={15}
+                        rows={27}
                         minLength={10}
-                        maxLength={1200}
+                        maxLength={2000}
                         required={false}
                     />
 

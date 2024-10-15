@@ -21,7 +21,7 @@ const FileInputImage = ({ image, onMutate, inputId }) => (
                     src={URL.createObjectURL(image)}
                     alt={inputId}
                     className="img-thumbnail mx-auto"
-                    style={{ width: '300px', height: '300px', objectFit: 'cover' }}
+                    style={{ objectFit: 'cover' }}
                 />
             </div>
         )}

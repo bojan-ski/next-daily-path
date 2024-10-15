@@ -5,7 +5,7 @@ const Diary = () => {
   return (
     <div className='diary-page'>
       <div className="container">
-        <DiaryEntries/>
+        <DiaryEntries />
       </div>
     </div>
   )

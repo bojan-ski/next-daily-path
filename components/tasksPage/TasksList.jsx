@@ -10,7 +10,7 @@ import TasksListPagination from "./TasksListPagination"
 
 const TasksList = () => {
     const { userProfileDetails } = useGlobalContext()
-    const itemsPerPage = 6;
+    const itemsPerPage = 10;
     const { tasks, getTasksList, page } = useTasksPagination(userProfileDetails.userID, itemsPerPage);
 
     useEffect(() => {
