@@ -1,7 +1,5 @@
 'use client'
 import { useRef } from "react"
-// context
-import { useGlobalContext } from "@/app/context"
 // lib - actions
 import { addNewTaskAction } from "@/lib/actions/taskActions"
 // components
@@ -9,18 +7,18 @@ import FormInput from "../FormInput"
 import FormTextArea from "../FormTextArea"
 import FormSubmitBtn from "../FormSubmitBtn"
 
-const FormNewTask = () => {
+const FormNewTask = ({ userID, getTasksList }) => {
     const ref = useRef(null)
-    const { userProfileDetails, fetchTasks } = useGlobalContext() 
-    const addNewTaskData = addNewTaskAction.bind(null, userProfileDetails.userID)
 
-    const createTaskAction = async (formData) =>{
+    const addNewTaskData = addNewTaskAction.bind(null, userID)
+
+    const createTaskAction = async (formData) => {
         const response = await addNewTaskData(formData)
-        if(response){
+        if (response) {
             ref.current?.reset()
-            await fetchTasks()
+            getTasksList()
             console.log('new tasks created')
-        }        
+        }
     }
 
     return (
@@ -32,11 +30,11 @@ const FormNewTask = () => {
 
                         <FormInput label='Do date:' name='taskDate' type='date' required={true} />
 
-                        <FormSubmitBtn btnTitle='Add new task'/>
+                        <FormSubmitBtn btnTitle='Add new task' />
                     </div>
 
                     <div>
-                        <FormTextArea name='taskContent' rows={7} minLength={10} maxLength={350} required={true}/>
+                        <FormTextArea name='taskContent' rows={7} minLength={10} maxLength={350} required={true} />
                     </div>
                 </div>
             </form>

@@ -1,18 +1,10 @@
 'use client'
 import { useEffect, Suspense } from "react"
-// context
-import { useGlobalContext } from "@/app/context"
-// custom hook
-import useTasksPagination from "@/hooks/useTasksPagination"
 // components
-import TaskItem from "./TaskItem"
+import Task from "./Task"
 import TasksListPagination from "./TasksListPagination"
 
-const TasksList = () => {
-    const { userProfileDetails } = useGlobalContext()
-    const itemsPerPage = 10;
-    const { tasks, getTasksList, page } = useTasksPagination(userProfileDetails.userID, itemsPerPage);
-
+const TasksList = ({ userProfileDetails, tasks, getTasksList, page }) => {
     useEffect(() => {
         console.log('useEffect - TasksList');
         const getTasksListFromDB = async () => {
@@ -34,8 +26,8 @@ const TasksList = () => {
                             Tasks List
                         </h2>
 
-                        <div>
-                            {tasks.map(task => <TaskItem key={task.docID} task={task} />)}  
+                        <div className="tasks">
+                            {tasks.map(task => <Task key={task.docID} userProfileDetails={userProfileDetails} task={task} getTasksList={getTasksList}/>)}
                         </div>
 
                         <TasksListPagination page={page} getTasksList={getTasksList} />

@@ -1,12 +1,11 @@
 // lib - actions
 import { deleteTaskAction } from "@/lib/actions/taskActions"
 
-const DeleteTaskBtn = ({ userID, taskID, tasks, setTasks }) => {
+const DeleteTaskBtn = ({ userID, taskID, getTasksList }) => {
     const handleDeleteTask = async () => {
         const response = await deleteTaskAction(userID, taskID)
         if (response) {
-            const updatedTasksList = tasks.filter(task => task.docID !== taskID)
-            setTasks(updatedTasksList)
+            getTasksList()
             console.log('Selected task has been removed')
         }
     }

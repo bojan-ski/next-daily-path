@@ -3,12 +3,12 @@ import FormInput from "../FormInput"
 import FormSubmitBtn from "../FormSubmitBtn"
 import FormTextArea from "../FormTextArea"
 
-const EditTaskModal = ({ updateTaskData, toggleModal, setToggleModal, task, fetchTasks }) => {
+const EditTaskModal = ({ updateTaskData, toggleModal, setToggleModal, task, getTasksList }) => {
     const updateTaskAction = async (formData) =>{
         const response = await updateTaskData(formData)
         if(response){
             setToggleModal(false)
-            await fetchTasks()
+            getTasksList()
             console.log("task updated successfully!");
         }        
     }

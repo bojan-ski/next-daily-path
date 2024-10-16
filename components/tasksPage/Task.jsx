@@ -6,11 +6,9 @@ import { updateIsTaskCompletedAction } from "@/lib/actions/taskActions";
 import EditTaskBtn from "./EditTaskBtn";
 import DeleteTaskBtn from "./DeleteTaskBtn";
 
-
-const TaskItem = ({ task }) => {
-    const { userProfileDetails, fetchTasks, tasks, setTasks } = useGlobalContext()
-    const taskID = task.docID
+const Task = ({ userProfileDetails, task, getTasksList }) => {
     const userID = userProfileDetails.userID
+    const taskID = task.docID
 
     const updateTaskData = updateIsTaskCompletedAction.bind(null, userID, taskID)
 
@@ -39,7 +37,7 @@ const TaskItem = ({ task }) => {
                             onChange={async (e) => {
                                 const taskStatus = e.target.checked;
                                 await updateTaskData(taskStatus)
-                                await fetchTasks()
+                                await getTasksList()
                             }}
                         />
                         <p>
@@ -49,8 +47,8 @@ const TaskItem = ({ task }) => {
 
                     {task.taskData.isCompleted == false && (
                         <div>
-                            <EditTaskBtn userID={userID} taskID={taskID} task={task} tasks={tasks} fetchTasks={fetchTasks} />
-                            <DeleteTaskBtn userID={userID} taskID={taskID} tasks={tasks} setTasks={setTasks} />
+                            <EditTaskBtn userID={userID} taskID={taskID} task={task} getTasksList={getTasksList} />
+                            <DeleteTaskBtn userID={userID} taskID={taskID} getTasksList={getTasksList} />
                         </div>
                     )}
                 </div>
@@ -59,4 +57,4 @@ const TaskItem = ({ task }) => {
     )
 }
 
-export default TaskItem
+export default Task

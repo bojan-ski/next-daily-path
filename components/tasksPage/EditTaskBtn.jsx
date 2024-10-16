@@ -4,7 +4,7 @@ import { updateTaskDataAction } from "@/lib/actions/taskActions";
 // components
 import EditTaskModal from "./EditTaskModal";
 
-const EditTaskBtn = ({ userID, taskID, task, fetchTasks }) => {
+const EditTaskBtn = ({ userID, taskID, task, getTasksList }) => {
     const [toggleModal, setToggleModal] = useState(false)
     const updateTaskData = updateTaskDataAction.bind(null, userID, taskID)
 
@@ -14,7 +14,7 @@ const EditTaskBtn = ({ userID, taskID, task, fetchTasks }) => {
                 Edit
             </button>
 
-            <EditTaskModal updateTaskData={updateTaskData} toggleModal={toggleModal} setToggleModal={setToggleModal} task={task} fetchTasks={fetchTasks} />
+            <EditTaskModal updateTaskData={updateTaskData} toggleModal={toggleModal} setToggleModal={setToggleModal} task={task} getTasksList={getTasksList} />
         </>
     )
 }
