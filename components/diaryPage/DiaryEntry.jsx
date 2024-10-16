@@ -1,11 +1,19 @@
 import Image from "next/image"
 
 const DiaryEntry = ({ entry }) => {
+    // console.log(entry);
+    
     return (
         <div key={entry.id} className="mb-10">
-            <h2 className="text-4xl text-black font-bold text-center capitalize mb-7">
-                {entry.data.newDiaryEntryTitle}
-            </h2>
+            <div className="flex items-center justify-between mb-7">
+                <h2 className="text-4xl text-black font-bold text-center capitalize">
+                    {entry.data.newDiaryEntryTitle}
+                </h2>
+
+                <p className="text-black font-bold">
+                    {entry.data.listingCreated}
+                </p>
+            </div>
 
             {entry.data.diaryEntryImgOneUrl ? (
                 <div className="grid lg:grid-cols-2 gap-4 mb-5">
