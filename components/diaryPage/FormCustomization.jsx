@@ -3,9 +3,9 @@ const FormCustomization = ({ setCustomEntry }) => {
         <section className="new-diary-entry-form-customization mb-7">
             <div className="grid lg:grid-cols-3 gap-5">
                 {/* image one toggle */}
-                <div className="form-control border rounded-full p-2">
+                <div className="form-control border border-orange-300 rounded-full px-4 py-2">
                     <label className="label cursor-pointer">
-                        <span className="label-text text-black">
+                        <span className="label-text">
                             Add image option - one
                         </span>
                         <input type="checkbox" className="toggle toggle-primary" onChange={e => setCustomEntry(curState => ({
@@ -14,9 +14,9 @@ const FormCustomization = ({ setCustomEntry }) => {
                     </label>
                 </div>
                 {/* entry content toggle */}
-                <div className="form-control border rounded-full p-2">
+                <div className="form-control border border-orange-300 rounded-full px-4 py-2">
                     <label className="label cursor-pointer">
-                        <span className="label-text text-black">
+                        <span className="label-text">
                             Add new entry field
                         </span>
                         <input type="checkbox" className="toggle toggle-secondary" onChange={e => setCustomEntry(curState => ({
@@ -25,9 +25,9 @@ const FormCustomization = ({ setCustomEntry }) => {
                     </label>
                 </div>
                 {/* image two toggle */}
-                <div className="form-control border rounded-full p-2">
+                <div className="form-control border border-orange-300 rounded-full px-4 py-2">
                     <label className="label cursor-pointer">
-                        <span className="label-text text-black">
+                        <span className="label-text">
                             Add image option - two
                         </span>
                         <input type="checkbox" className="toggle toggle-accent" onChange={e => setCustomEntry(curState => ({

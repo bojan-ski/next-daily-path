@@ -32,11 +32,12 @@ const DiaryEntries = () => {
 
     return (
         <div className="diary-page">
+            {/* search */}
+            <DiaryEntrySearchOption getDiaryEntries={getDiaryEntries} searchParam={searchParam} setSearchParam={setSearchParam} />
+            
             {diaryEntries && diaryEntries.length > 0 ? (
                 <>
                     <Suspense fallback={<Loading />}>
-                        {/* search */}
-                        <DiaryEntrySearchOption getDiaryEntries={getDiaryEntries} searchParam={searchParam} setSearchParam={setSearchParam} />
 
                         {/* Display the current diary entry */}
                         {diaryEntries.map((entry) => (

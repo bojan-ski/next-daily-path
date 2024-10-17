@@ -10,7 +10,6 @@ import { IoIosLogIn } from "react-icons/io";
 
 const OnboardingOptions = () => {
     const { userProfileDetails, setUserProfileDetails } = useGlobalContext()
-    // console.log(userProfileDetails);
 
     return (
         <>

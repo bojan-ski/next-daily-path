@@ -10,10 +10,10 @@ const FileInputImage = ({ image, onMutate, inputId }) => (
         />
         <button
             type="button"
-            className="btn btn-primary"
+            className="btn bg-orange-400 text-white"
             onClick={() => document.getElementById(inputId).click()}
         >
-            Add Image - 1MB max
+            Add image - 1MB max           
         </button>
         {image && (
             <div className="mt-3">

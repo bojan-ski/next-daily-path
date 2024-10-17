@@ -8,7 +8,7 @@ const Pagination = ({ page, getPageContentData }) => {
     return (
         <div className="flex justify-center mt-10">
             <button
-                className="btn bg-orange-300 hover:bg-orange-400 px-7 mx-5"
+                className="btn bg-orange-300 hover:bg-orange-400 text-white px-7 mx-5"
                 onClick={() => {
                     getPageContentData(page - 1)
                     scrollToTop()
@@ -18,7 +18,7 @@ const Pagination = ({ page, getPageContentData }) => {
                 <GrLinkPrevious size={24} />
             </button>
             <button
-                className="btn bg-orange-300 hover:bg-orange-400 px-7 mx-5"
+                className="btn bg-orange-300 hover:bg-orange-400 text-white px-7 mx-5"
                 onClick={() => {
                     getPageContentData(page + 1)
                     scrollToTop()
