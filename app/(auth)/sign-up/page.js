@@ -82,7 +82,7 @@ const SignUp = () => {
     <div className='sign-up-page'>
       <PageHeader pageTitle="Sign Up" />
 
-      <section className='sign-up-form bg-white w-1/2 mx-auto my-16 px-10 py-8 rounded-lg'>
+      <section className='sign-up-form bg-orange-100 w-1/2 mx-auto my-16 px-10 py-8 rounded-lg'>
 
         <form onSubmit={handleSignUpUserSubmit}>
           {/* sign up username */}

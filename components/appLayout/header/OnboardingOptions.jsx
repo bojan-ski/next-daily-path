@@ -2,7 +2,11 @@
 import Link from "next/link"
 // context
 import { useGlobalContext } from "@/app/context"
+// component
 import SignOutBtn from "./SignOutBtn"
+// icon
+import { FaWpforms } from "react-icons/fa";
+import { IoIosLogIn } from "react-icons/io";
 
 const OnboardingOptions = () => {
     const { userProfileDetails, setUserProfileDetails } = useGlobalContext()
@@ -11,14 +15,14 @@ const OnboardingOptions = () => {
     return (
         <>
             {userProfileDetails && userProfileDetails?.userLoggedIn ? (
-                <SignOutBtn setUserProfileDetails={setUserProfileDetails}/>
+                <SignOutBtn setUserProfileDetails={setUserProfileDetails} />
             ) : (
-                <div>
-                    <Link href='/sign-up' className="log-out-btn bg-amber-500 rounded-md px-2 py-1 me-5 font-bold hover:bg-amber-600">
-                        Sign Up
+                <div className="flex items-center">
+                    <Link href='/sign-up' className="bg-amber-500 rounded-md px-4 py-2 me-5 font-bold hover:bg-amber-600">
+                        <FaWpforms size={24}/>
                     </Link>
-                    <Link href='/sign-in' className="log-out-btn bg-amber-500 rounded-md px-2 py-1 font-bold hover:bg-amber-600">
-                        Sign In
+                    <Link href='/sign-in' className="bg-amber-500 rounded-md px-4 py-2 font-bold hover:bg-amber-600">
+                        <IoIosLogIn size={24}/>
                     </Link>
                 </div>
             )}

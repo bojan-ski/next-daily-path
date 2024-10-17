@@ -3,6 +3,8 @@ import { useState } from "react";
 import { updateTaskDataAction } from "@/lib/actions/taskActions";
 // components
 import EditTaskModal from "./EditTaskModal";
+// icon
+import { FaEdit } from "react-icons/fa";
 
 const EditTaskBtn = ({ userID, taskID, task, getTasksList }) => {
     const [toggleModal, setToggleModal] = useState(false)
@@ -10,8 +12,8 @@ const EditTaskBtn = ({ userID, taskID, task, getTasksList }) => {
 
     return (
         <>
-            <button className='btn btn-sm btn-warning me-3' onClick={() => setToggleModal(true)} >
-                Edit
+            <button className='btn btn-sm me-3' onClick={() => setToggleModal(true)} >
+                <FaEdit size={17} />
             </button>
 
             <EditTaskModal updateTaskData={updateTaskData} toggleModal={toggleModal} setToggleModal={setToggleModal} task={task} getTasksList={getTasksList} />

@@ -4,7 +4,7 @@ import FooterNavbar from "./FooterNavbar"
 
 const Footer = () => {   
     return (
-        <footer className="text-center bg-black py-3">
+        <footer className="text-center bg-orange-300 py-4">
             <FooterNavbar/>
             <AppDeveloperRights/>
         </footer>

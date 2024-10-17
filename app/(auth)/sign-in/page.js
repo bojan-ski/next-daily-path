@@ -36,7 +36,7 @@ const SignIn = () => {
     <div className='sign-in-page'>
       <PageHeader pageTitle="Sign In" />
 
-      <section className='sign-in-form bg-white w-1/2 mx-auto my-16 px-10 py-8 rounded-lg'>
+      <section className='sign-in-form bg-orange-100 w-1/2 mx-auto my-16 px-10 py-8 rounded-lg'>
         <form onSubmit={handleSignInUserSubmit}>
           {/* login email */}
           <FormInput label='Email address' name="loginEmail" placeholder='Enter email address' type='email' required={true} />

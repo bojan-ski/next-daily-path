@@ -35,7 +35,7 @@ const ForgotPassword = () => {
     <div className='forgot-password-page'>
       <PageHeader pageTitle="Forgot Password" />
 
-      <section className='forgot-password-form bg-white w-1/2 mx-auto my-16 px-10 py-8 rounded-lg'>
+      <section className='forgot-password-form bg-orange-100 w-1/2 mx-auto my-16 px-10 py-8 rounded-lg'>
         <form onSubmit={handleResetPassword}>
           {/* login email */}
           <FormInput label='Email address' name="loginEmail" placeholder='Enter email address' type='email' required={true} />

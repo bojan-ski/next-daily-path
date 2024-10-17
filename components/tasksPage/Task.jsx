@@ -19,7 +19,7 @@ const Task = ({ userProfileDetails, task, getTasksList }) => {
                 <h2 className='capitalize'>
                     {task.taskData.taskTitle}
                 </h2>
-                <p>
+                <p className="text-lg">
                     Do date: {task.taskData.taskDate}
                 </p>
             </div>

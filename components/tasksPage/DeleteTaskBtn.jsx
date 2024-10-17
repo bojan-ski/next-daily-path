@@ -1,5 +1,7 @@
 // lib - actions
 import { deleteTaskAction } from "@/lib/actions/taskActions"
+// icon
+import { MdDelete } from "react-icons/md";
 
 const DeleteTaskBtn = ({ userID, taskID, getTasksList }) => {
     const handleDeleteTask = async () => {
@@ -11,8 +13,8 @@ const DeleteTaskBtn = ({ userID, taskID, getTasksList }) => {
     }
 
     return (
-        <button className='btn btn-sm btn-error' onClick={handleDeleteTask}>
-            Delete
+        <button className='btn btn-sm' onClick={handleDeleteTask}>
+            <MdDelete size={17} />
         </button>
     )
 }

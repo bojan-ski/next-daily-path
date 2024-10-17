@@ -2,7 +2,9 @@
 import { useEffect, Suspense } from "react"
 // components
 import Task from "./Task"
-import TasksListPagination from "./TasksListPagination"
+import Pagination from "../Pagination"
+// loading
+import Loading from "@/app/loading"
 
 const TasksList = ({ userProfileDetails, tasks, getTasksList, page }) => {
     useEffect(() => {
@@ -21,8 +23,8 @@ const TasksList = ({ userProfileDetails, tasks, getTasksList, page }) => {
         <section className='tasks-list mb-10'>
             {tasks && tasks.length > 0 ? (
                 <>
-                    <Suspense fallback={<p>Loading feed...</p>}>
-                        <h2 className='text-stone-950 text-3xl text-center font-bold mb-7'>
+                    <Suspense fallback={<Loading />}>
+                        <h2 className='text-4xl text-center font-bold mb-10'>
                             Tasks List
                         </h2>
 
@@ -30,11 +32,11 @@ const TasksList = ({ userProfileDetails, tasks, getTasksList, page }) => {
                             {tasks.map(task => <Task key={task.docID} userProfileDetails={userProfileDetails} task={task} getTasksList={getTasksList}/>)}
                         </div>
 
-                        <TasksListPagination page={page} getTasksList={getTasksList} />
+                        <Pagination page={page} getPageContentData={getTasksList} />
                     </Suspense>
                 </>
             ) : (
-                <h2 className='text-stone-950 text-3xl text-center font-bold'>
+                <h2 className='text-4xl text-center font-bold'>
                     No tasks found
                 </h2>
             )}

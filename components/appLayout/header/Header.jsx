@@ -4,7 +4,7 @@ import Onboarding from "./Onboarding"
 
 const Header = () => {
   return (
-    <header>
+    <header className="bg-orange-300">
         <Onboarding/>
         <HeaderNavbar/>
     </header>
