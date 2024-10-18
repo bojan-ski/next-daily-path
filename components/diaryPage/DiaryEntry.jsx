@@ -1,8 +1,6 @@
 import Image from "next/image"
 
-const DiaryEntry = ({ entry }) => {
-    // console.log(entry);
-    
+const DiaryEntry = ({ entry }) => {   
     return (
         <div key={entry.id} className="mb-10">
             <div className="flex items-center justify-between mb-7">

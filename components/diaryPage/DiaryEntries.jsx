@@ -1,5 +1,5 @@
 'use client'
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // context
 import { useGlobalContext } from "@/app/context";
 // custom hook
@@ -8,8 +8,6 @@ import useDiaryPagination from "@/hooks/useDiaryPagination";
 import DiaryEntrySearchOption from "./DiaryEntrySearchOption";
 import DiaryEntry from "./DiaryEntry";
 import Pagination from "../Pagination";
-// loading
-import Loading from "@/app/loading";
 
 const DiaryEntries = () => {
     const { userProfileDetails } = useGlobalContext()
@@ -34,22 +32,17 @@ const DiaryEntries = () => {
         <div className="diary-page">
             {/* search */}
             <DiaryEntrySearchOption getDiaryEntries={getDiaryEntries} searchParam={searchParam} setSearchParam={setSearchParam} />
-            
+
             {diaryEntries && diaryEntries.length > 0 ? (
                 <>
-                    <Suspense fallback={<Loading />}>
+                    {/* Display the current diary entry */}
+                    {diaryEntries.map((entry) => (
+                        <DiaryEntry key={entry.id} entry={entry} />
+                    ))}
 
-                        {/* Display the current diary entry */}
-                        {diaryEntries.map((entry) => (
-                            <DiaryEntry key={entry.id} entry={entry} />
-
-                        ))}
-
-                        {/* pagination */}
-                        <Pagination page={page} getPageContentData={getDiaryEntries} />
-                    </Suspense>
+                    {/* pagination */}
+                    <Pagination page={page} getPageContentData={getDiaryEntries} />
                 </>
-
             ) : (
                 <h2 className='text-stone-950 text-3xl text-center font-bold'>
                     No diary entries found

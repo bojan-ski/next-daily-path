@@ -1,12 +1,15 @@
 import { useState } from "react"
+// component
 import FormSubmitBtn from "../FormSubmitBtn"
+// toast
+import toast from "react-hot-toast"
 
 const DiaryEntrySearchOption = ({ getDiaryEntries, searchParam, setSearchParam }) => {
     const [disable, setDisable] = useState(false)
 
     const handleSearch = e => {
         e.preventDefault()
-        if (searchParam == '' || searchParam.trim().length == 0) return console.log('please enter search term');
+        if (searchParam == '' || searchParam.trim().length == 0) return toast.error('please enter search term');
         setDisable(true)
         getDiaryEntries(0, searchParam.trim())
     }

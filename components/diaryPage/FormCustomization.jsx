@@ -6,7 +6,7 @@ const FormCustomization = ({ setCustomEntry }) => {
                 <div className="form-control border border-orange-300 rounded-full px-4 py-2">
                     <label className="label cursor-pointer">
                         <span className="label-text">
-                            Add image option - one
+                            Add image option - size 1MB max
                         </span>
                         <input type="checkbox" className="toggle toggle-primary" onChange={e => setCustomEntry(curState => ({
                             ...curState, imageOne: e.target.checked
@@ -28,7 +28,7 @@ const FormCustomization = ({ setCustomEntry }) => {
                 <div className="form-control border border-orange-300 rounded-full px-4 py-2">
                     <label className="label cursor-pointer">
                         <span className="label-text">
-                            Add image option - two
+                            Add image option - size 1MB max
                         </span>
                         <input type="checkbox" className="toggle toggle-accent" onChange={e => setCustomEntry(curState => ({
                             ...curState, imageTwo: e.target.checked

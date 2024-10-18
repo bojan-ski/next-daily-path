@@ -1,10 +1,10 @@
 // components
-import NavTabs from '@/components/diaryPage/NavTabs'
+import DiaryPageNavigationTabs from '@/components/diaryPage/DiaryPageNavigationTabs'
 
 const layout = ({ children }) => {
     return (
         <div>
-            <NavTabs />
+            <DiaryPageNavigationTabs />
             {children}
         </div>
     )

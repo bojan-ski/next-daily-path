@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-const NavTabs = () => {
+const DiaryPageNavigationTabs = () => {
     const pathname = usePathname()
 
     return (
@@ -19,5 +19,5 @@ const NavTabs = () => {
     )
 }
 
-export default NavTabs
+export default DiaryPageNavigationTabs
 
