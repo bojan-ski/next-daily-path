@@ -58,7 +58,7 @@ const useTasksPagination = (userID, itemsPerPage) => {
         }
     };
 
-    return { tasks, getTasksList, page };
+    return { tasks, setTasks, getTasksList, page };
 }
 
 export default useTasksPagination

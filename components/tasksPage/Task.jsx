@@ -5,12 +5,34 @@ import { updateIsTaskCompletedAction } from "@/lib/actions/taskActions";
 // components
 import EditTaskBtn from "./EditTaskBtn";
 import DeleteTaskBtn from "./DeleteTaskBtn";
+// toast
+import toast from "react-hot-toast";
 
-const Task = ({ userProfileDetails, task, getTasksList }) => {
+const Task = ({ task }) => {
+    const { userProfileDetails, setTasks } = useGlobalContext()
     const userID = userProfileDetails.userID
     const taskID = task.docID
 
     const updateTaskData = updateIsTaskCompletedAction.bind(null, userID, taskID)
+    const handleChange = async e => {
+        const taskStatus = e.target.checked;
+        const response = await updateTaskData(taskStatus)
+
+        if (response) {
+            setTasks(prevState =>
+                prevState.map(item =>
+                    item.docID === taskID ? {
+                        ...item,
+                        taskData: {
+                            ...item.taskData,
+                            isCompleted: taskStatus,
+                        }
+                    } : item)
+            );
+
+            toast.success("Task updated successfully!");
+        }
+    }
 
     return (
         <div className={`collapse collapse-arrow my-3 ${task.taskData.isCompleted == false ? "bg-red-500" : 'bg-green-500'}`}>
@@ -34,11 +56,7 @@ const Task = ({ userProfileDetails, task, getTasksList }) => {
                             className="h-4 w-4 rounded"
                             type="checkbox"
                             checked={task.taskData.isCompleted}
-                            onChange={async (e) => {
-                                const taskStatus = e.target.checked;
-                                await updateTaskData(taskStatus)
-                                await getTasksList()
-                            }}
+                            onChange={handleChange}
                         />
                         <p>
                             Task completed
@@ -47,8 +65,8 @@ const Task = ({ userProfileDetails, task, getTasksList }) => {
 
                     {task.taskData.isCompleted == false && (
                         <div>
-                            <EditTaskBtn userID={userID} taskID={taskID} task={task} getTasksList={getTasksList} />
-                            <DeleteTaskBtn userID={userID} taskID={taskID} getTasksList={getTasksList} />
+                            <EditTaskBtn userID={userID} taskID={taskID} task={task} />
+                            <DeleteTaskBtn userID={userID} taskID={taskID} />
                         </div>
                     )}
                 </div>

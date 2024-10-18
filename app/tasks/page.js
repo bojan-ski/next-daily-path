@@ -1,11 +1,16 @@
 // components
-import TasksListContainer from "@/components/tasksPage/TasksListContainer";
+import FormNewTask from "@/components/tasksPage/FormNewTask";
+import TasksList from "@/components/tasksPage/TasksList";
 
 const Tasks = () => {
   return (
     <div className='tasks-page'>
       <div className="container">
-        <TasksListContainer />
+
+        <FormNewTask />
+
+        <TasksList />
+
       </div>
     </div>
   )

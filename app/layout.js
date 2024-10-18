@@ -5,6 +5,8 @@ import Header from "@/components/appLayout/header/Header";
 import Footer from "@/components/appLayout/footer/Footer";
 // style
 import "./globals.css";
+// toast
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Daily Path",
@@ -22,6 +24,7 @@ export default function RootLayout({ children }) {
           <main className="flex-1 py-8">
             {children}
           </main>
+          <Toaster />
 
           <Footer />
         </AppProvider>

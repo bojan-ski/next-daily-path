@@ -17,10 +17,10 @@ const OnboardingOptions = () => {
                 <SignOutBtn setUserProfileDetails={setUserProfileDetails} />
             ) : (
                 <div className="flex items-center">
-                    <Link href='/sign-up' className="bg-amber-500 rounded-md px-4 py-2 me-5 font-bold hover:bg-amber-600">
+                    <Link href='/sign-up' className="bg-amber-500 text-white rounded-md px-4 py-2 me-5 font-bold hover:bg-amber-600">
                         <FaWpforms size={24}/>
                     </Link>
-                    <Link href='/sign-in' className="bg-amber-500 rounded-md px-4 py-2 font-bold hover:bg-amber-600">
+                    <Link href='/sign-in' className="bg-amber-500 text-white rounded-md px-4 py-2 font-bold hover:bg-amber-600">
                         <IoIosLogIn size={24}/>
                     </Link>
                 </div>

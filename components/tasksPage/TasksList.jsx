@@ -1,12 +1,14 @@
 'use client'
-import { useEffect, Suspense } from "react"
+import { useEffect } from "react"
+// context
+import { useGlobalContext } from "@/app/context"
 // components
 import Task from "./Task"
 import Pagination from "../Pagination"
-// loading
-import Loading from "@/app/loading"
 
-const TasksList = ({ userProfileDetails, tasks, getTasksList, page }) => {
+const TasksList = () => {
+    const { userProfileDetails, tasks, getTasksList, page } = useGlobalContext()
+
     useEffect(() => {
         console.log('useEffect - TasksList');
         const getTasksListFromDB = async () => {
@@ -23,17 +25,15 @@ const TasksList = ({ userProfileDetails, tasks, getTasksList, page }) => {
         <section className='tasks-list mb-10'>
             {tasks && tasks.length > 0 ? (
                 <>
-                    <Suspense fallback={<Loading />}>
-                        <h2 className='text-4xl text-center font-bold mb-10'>
-                            Tasks List
-                        </h2>
+                    <h2 className='text-4xl text-center font-bold mb-10'>
+                        Tasks List
+                    </h2>
 
-                        <div className="tasks">
-                            {tasks.map(task => <Task key={task.docID} userProfileDetails={userProfileDetails} task={task} getTasksList={getTasksList}/>)}
-                        </div>
+                    <div className="tasks">
+                        {tasks.map(task => <Task key={task.docID} task={task} />)}
+                    </div>
 
-                        <Pagination page={page} getPageContentData={getTasksList} />
-                    </Suspense>
+                    <Pagination page={page} getPageContentData={getTasksList} />
                 </>
             ) : (
                 <h2 className='text-4xl text-center font-bold'>

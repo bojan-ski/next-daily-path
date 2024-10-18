@@ -3,6 +3,8 @@ import { useContext, createContext, useState, useEffect } from "react";
 // firebase/firestore funcs
 import { auth } from "./firebase.config";
 import { onAuthStateChanged } from "firebase/auth"
+// custom hook
+import useTasksPagination from "@/hooks/useTasksPagination";
 
 
 const AppContext = createContext()
@@ -38,9 +40,17 @@ export const AppProvider = ({ children }) => {
         fetchUserDetails()
     }, [])
 
+    // TASKS
+    const itemsPerPage = 10;
+    const { tasks, setTasks, getTasksList, page } = useTasksPagination(userProfileDetails.userID, itemsPerPage);
+
     return <AppContext.Provider value={{
-        userProfileDetails, // OnboardingOptions, TasksListContainer
+        userProfileDetails, // OnboardingOptions, FormNewTask, TasksList, Task
         setUserProfileDetails, // SignOutBtn
+        tasks, // TasksList, DeleteTaskBtn
+        setTasks, // DeleteTaskBtn, EditTaskModal, Task
+        getTasksList, // FormNewTask, TasksList
+        page, // TasksList
     }}>
         {children}
     </AppContext.Provider>

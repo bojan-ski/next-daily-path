@@ -1,23 +1,28 @@
 'use client'
 import { useRef } from "react"
+// context
+import { useGlobalContext } from "@/app/context"
 // lib - actions
 import { addNewTaskAction } from "@/lib/actions/taskActions"
 // components
 import FormInput from "../FormInput"
 import FormTextArea from "../FormTextArea"
 import FormSubmitBtn from "../FormSubmitBtn"
+// toast
+import toast from "react-hot-toast"
 
-const FormNewTask = ({ userID, getTasksList }) => {
+const FormNewTask = () => {
+    const { userProfileDetails, getTasksList } = useGlobalContext()
     const ref = useRef(null)
 
-    const addNewTaskData = addNewTaskAction.bind(null, userID)
+    const addNewTaskData = addNewTaskAction.bind(null, userProfileDetails.userID)
 
     const createTaskAction = async (formData) => {
         const response = await addNewTaskData(formData)
         if (response) {
             ref.current?.reset()
             getTasksList()
-            console.log('new tasks created')
+            toast.success('New tasks created')
         }
     }
 
@@ -34,7 +39,7 @@ const FormNewTask = ({ userID, getTasksList }) => {
                         <FormTextArea name='taskContent' rows={7} minLength={10} maxLength={350} required={true} />
                     </div>
                 </div>
-                
+
                 <FormSubmitBtn btnTitle='Add new task' />
             </form>
         </section>
