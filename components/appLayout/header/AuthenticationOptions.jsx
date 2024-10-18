@@ -8,7 +8,7 @@ import SignOutBtn from "./SignOutBtn"
 import { FaWpforms } from "react-icons/fa";
 import { IoIosLogIn } from "react-icons/io";
 
-const OnboardingOptions = () => {
+const AuthenticationOptions = () => {
     const { userProfileDetails, setUserProfileDetails } = useGlobalContext()
 
     return (
@@ -16,7 +16,7 @@ const OnboardingOptions = () => {
             {userProfileDetails && userProfileDetails?.userLoggedIn ? (
                 <SignOutBtn setUserProfileDetails={setUserProfileDetails} />
             ) : (
-                <div className="flex items-center">
+                <div className="flex items-center justify-end">
                     <Link href='/sign-up' className="bg-amber-500 text-white rounded-md px-4 py-2 me-5 font-bold hover:bg-amber-600">
                         <FaWpforms size={24}/>
                     </Link>
@@ -29,4 +29,4 @@ const OnboardingOptions = () => {
     )
 }
 
-export default OnboardingOptions
+export default AuthenticationOptions

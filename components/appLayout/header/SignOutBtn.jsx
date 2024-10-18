@@ -32,9 +32,11 @@ const SignOutBtn = ({ setUserProfileDetails }) => {
     }
 
     return (
-        <button onClick={() => logOutUser()} className="text-white bg-red-500 rounded-md px-4 py-2 hover:bg-red-600">
-            <FaSignOutAlt size={24}/>
-        </button>
+        <div className="sign-out-btn flex justify-end">
+            <button onClick={() => logOutUser()} className="text-white bg-red-500 rounded-md px-4 py-2 hover:bg-red-600">
+                <FaSignOutAlt size={24}/>
+            </button>
+        </div>
     )
 }
 
