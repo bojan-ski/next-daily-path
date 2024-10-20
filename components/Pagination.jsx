@@ -6,7 +6,7 @@ import { GrLinkPrevious } from "react-icons/gr";
 
 const Pagination = ({ page, getPageContentData }) => {
     return (
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center">
             <button
                 className="btn bg-orange-300 hover:bg-orange-400 text-white px-7 mx-5"
                 onClick={() => {

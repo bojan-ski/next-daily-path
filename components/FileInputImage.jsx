@@ -1,3 +1,6 @@
+// icon
+import { RiImageAddFill } from "react-icons/ri";
+
 const FileInputImage = ({ image, onMutate, inputId }) => (
     <div className="mb-3">
         <input
@@ -13,7 +16,7 @@ const FileInputImage = ({ image, onMutate, inputId }) => (
             className="btn bg-orange-400 text-white"
             onClick={() => document.getElementById(inputId).click()}
         >
-            Add image - 1MB max           
+            <RiImageAddFill size={25}/>           
         </button>
         {image && (
             <div className="mt-3">

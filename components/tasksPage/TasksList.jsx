@@ -29,7 +29,7 @@ const TasksList = () => {
                         Tasks List
                     </h2>
 
-                    <div className="tasks">
+                    <div className="tasks mb-10">
                         {tasks.map(task => <Task key={task.docID} task={task} />)}
                     </div>
 

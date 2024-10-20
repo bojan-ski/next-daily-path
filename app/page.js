@@ -1,6 +1,16 @@
+// components
+import Hero from "@/components/homePage/Hero"
+import AppDescription from "@/components/homePage/AppDescription"
+
 const Home = () => {
   return (
-    <div>Home</div>
+    <div className="home-page">
+      <Hero />
+
+      <div className="container">
+        <AppDescription />
+      </div>
+    </div>
   )
 }
 

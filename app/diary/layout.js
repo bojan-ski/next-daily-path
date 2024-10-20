@@ -3,7 +3,7 @@ import DiaryPageNavigationTabs from '@/components/diaryPage/DiaryPageNavigationT
 
 const layout = ({ children }) => {
     return (
-        <div>
+        <div className='diary-page my-10'>
             <DiaryPageNavigationTabs />
             {children}
         </div>

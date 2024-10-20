@@ -14,6 +14,14 @@ textarea {
   resize: none;
 }
 
+/* MAIN */
+/* Home page */
+/* Hero component */
+.hero{
+  height: 700px;
+}
+
+/* Tasks page */
 /* Modal */
 .custom-modal {
   display: none;

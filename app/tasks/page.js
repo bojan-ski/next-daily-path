@@ -4,7 +4,7 @@ import TasksList from "@/components/tasksPage/TasksList";
 
 const Tasks = () => {
   return (
-    <div className='tasks-page'>
+    <div className='tasks-page mt-10'>
       <div className="container">
 
         <FormNewTask />
