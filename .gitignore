@@ -19,8 +19,6 @@
 # misc
 .DS_Store
 *.pem
-ex_assets
-helper_doc.txt
 
 # debug
 npm-debug.log*

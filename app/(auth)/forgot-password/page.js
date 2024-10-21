@@ -32,7 +32,7 @@ const ForgotPassword = () => {
   }
 
   return (
-    <div className='forgot-password-page'>
+    <div className='forgot-password-page mt-10'>
       <PageHeader pageTitle="Forgot Password" />
 
       <section className='forgot-password-form bg-orange-100 w-1/2 mx-auto my-16 px-10 py-8 rounded-lg'>

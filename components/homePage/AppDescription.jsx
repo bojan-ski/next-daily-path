@@ -8,7 +8,7 @@ const AppDescription = () => {
         <section className="app-desc grid grid-cols-5 gap-10 lg:text-lg items-center mb-8">
 
             {/* grid item 1 */}
-            <div className="col-span-2 lg:col-span-3">
+            <div className="col-span-5 md:col-span-2 lg:col-span-3">
                 <h2 className="text-4xl mb-5 lg:mb-8 font-medium">
                     Remember your day
                 </h2>
@@ -26,18 +26,18 @@ const AppDescription = () => {
                 </div>
             </div>
 
-            <div className="col-span-3 lg:col-span-2">
+            <div className="col-span-4 md:col-span-3 lg:col-span-2">
                 <Image src={homeImgOne} alt="home-page-img-one" className="rounded-lg" placeholder="blur" quality={80} />
             </div>
 
             {/* grid item 2 */}
-            <div className="col-span-3 lg:col-span-2">
-                <Image src={homeImgTwo} alt="home-page-img-two" className="rounded-lg" placeholder="blur" quality={80} />
+            <div className="col-span-4 md:col-span-3 lg:col-span-2 order-last md:order-none">
+                <Image src={homeImgTwo} alt="home-page-img-two" className="rounded-lg " placeholder="blur" quality={80} />
             </div>
 
-            <div className="col-span-2 lg:col-span-3">
+            <div className="col-span-5 md:col-span-2 lg:col-span-3">
                 <h1 className="text-4xl mb-5 lg:mb-8 font-medium">
-                    Stay Organized with Tasks
+                    Stay organized with your tasks
                 </h1>
 
                 <div className="space-y-2 lg:space-y-5">

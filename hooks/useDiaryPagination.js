@@ -2,6 +2,7 @@ import { useState } from "react";
 // firebase funcs
 import { collection, query, orderBy, startAfter, limit, getDocs, where } from "firebase/firestore";
 import { db } from "@/app/firebase.config";
+import toast from "react-hot-toast";
 
 const useDiaryPagination = (userID) => {
     const itemsPerPage = 1
@@ -60,7 +61,9 @@ const useDiaryPagination = (userID) => {
             })));
             setPage(pageNumber);
         } catch (error) {
-            console.log("Error fetching diary entries:", error);
+            // error message
+            toast.error('There was an error fetching Diary content')
+            // console.log("Error fetching diary entries:", error);
         }
     };
 

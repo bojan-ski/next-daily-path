@@ -1,16 +1,30 @@
 'use client'
 import { useEffect } from "react"
+import { useRouter } from "next/navigation"
 // context
 import { useGlobalContext } from "@/app/context"
 // components
 import Task from "./Task"
 import Pagination from "../Pagination"
+// toast
+import toast from "react-hot-toast"
 
 const TasksList = () => {
+    const router = useRouter()
     const { userProfileDetails, tasks, getTasksList, page } = useGlobalContext()
 
+    // Redirect if user is not logged in
     useEffect(() => {
-        console.log('useEffect - TasksList');
+        console.log('useEffect - TasksList - 1');
+        if (!userProfileDetails.userLoggedIn) {
+            toast.error('You need to have an account, in order to access the Tasks')
+        return router.push('/')
+        }
+    }, [userProfileDetails.userLoggedIn, router]);
+
+    // fetch page content
+    useEffect(() => {
+        console.log('useEffect - TasksList - 2');
         const getTasksListFromDB = async () => {
             if (userProfileDetails.userLoggedIn && userProfileDetails.userID) {
                 console.log('useEffect - fetchTasks');
