@@ -1,4 +1,4 @@
-const AppDeveloperRights = () => {
+const Copyright = () => {
     const year = new Date().getFullYear()
 
     return (
@@ -10,4 +10,4 @@ const AppDeveloperRights = () => {
     )
 }
 
-export default AppDeveloperRights
+export default Copyright
