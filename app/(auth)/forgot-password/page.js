@@ -47,7 +47,7 @@ const ForgotPassword = () => {
 
         <div className="text-end mt-3">
           <p className='mb-1 text-stone-950'>
-            Don't need a new password?
+            Don&apos;t need a new password?
           </p>
           <Link href='/sign-in' className="text-orange-300 hover:text-orange-400 font-bold">
             Login
