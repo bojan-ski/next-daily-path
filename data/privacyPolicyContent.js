@@ -1,0 +1,11 @@
+const privacyPolicy = [
+    'At Daily Path, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, and protect your data when you use our services. By using our application, you agree to the practices described in this policy.',
+    'We take the security of your data seriously and implement industry-standard measures to protect it. However, no method of data transmission or storage is 100% secure, and we cannot guarantee absolute security.',
+    'We may collect the following types of information when you use our services: 1) Personal Information: This includes your name, email address, and other contact information you provide when creating an account. 2) Usage Data: We automatically collect data related to your interactions with our app, such as IP addresses, browser type, pages visited, and other diagnostic data. 3) Cookies: We use cookies and similar tracking technologies to improve your experience, analyze usage trends, and personalize content.',
+    'We may use the information we collect for various purposes, including: 1) To Provide and Maintain Services: We use your data to deliver the features and functionalities of our app. 2) To Improve User Experience: We analyze usage data to enhance app performance, fix bugs, and improve overall functionality. 3) To Communicate with You: We may send you updates, newsletters, or other communications related to the app or services.',
+    'We do not sell, rent, or trade your personal information with third parties. However, we may share your data in the following situations: 1) With Service Providers: We may share your information with trusted third-party vendors who assist us in providing our services. 2) For Legal Reasons: We may disclose your information if required by law or in response to valid legal requests from governmental authorities.',    
+    'We protect your information with security measures, but cannot guarantee complete security.',
+    'We may update this Privacy Policy from time to time. Any changes will be reflected on this page, and we encourage you to review this policy periodically.',
+]
+
+export default privacyPolicy
