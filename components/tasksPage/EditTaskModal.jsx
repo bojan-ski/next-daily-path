@@ -12,6 +12,7 @@ const EditTaskModal = ({ updateTaskData, toggleModal, setToggleModal, taskID, ta
 
     const updateTaskAction = async (formData) => {
         const response = await updateTaskData(formData)
+        
         if (response) {
             setToggleModal(false);
 

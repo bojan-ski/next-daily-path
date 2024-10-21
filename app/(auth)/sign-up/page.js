@@ -5,12 +5,14 @@ import PageHeader from "@/components/PageHeader"
 import FormInput from "@/components/FormInput"
 import FormInputCheckbox from "@/components/FormInputCheckbox"
 import FormSubmitBtn from "@/components/FormSubmitBtn"
-// lib
-import userSignUp from "@/lib/firebase/userSignUp"
 // firebase funcs
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { doc, serverTimestamp, setDoc } from "firebase/firestore"
 import { auth, db } from "@/app/firebase.config"
+// toast
+import toast from "react-hot-toast"
+// lib
+import userSignUp from "@/lib/firebase/userSignUp"
 
 const SignUp = () => {
   const router = useRouter()
@@ -42,7 +44,7 @@ const SignUp = () => {
       await setDoc(doc(db, 'users', newUser.uid), userCredentialsCopy)
 
       // success message
-      console.log('your account has been created');
+      toast.success('your account has been created');
 
       // clear form fields
       e.target.elements[0].value = ''
@@ -55,7 +57,8 @@ const SignUp = () => {
       router.push('/tasks')
     } catch (error) {
       // error message
-      console.log(error);
+      toast.error('There was an error while creating your account')
+      // console.log(error);
     }
   }
 
@@ -94,11 +97,13 @@ const SignUp = () => {
           {/* sign up password */}
           <FormInput label='Password' name="signUpPassword" type='password' required={true} placeholder='Enter password' />
 
-          {/* Terms & Conditions checkbox */}
-          <FormInputCheckbox linkTitle='Terms & Conditions' linkUrl='terms-and-conditions' />
+          <div className="mb-7">
+            {/* Terms & Conditions checkbox */}
+            <FormInputCheckbox linkTitle='Terms & Conditions' linkUrl='terms-and-conditions' />
 
-          {/* Privacy Policy checkbox */}
-          <FormInputCheckbox linkTitle='Privacy Policy' linkUrl='privacy-policy' />
+            {/* Privacy Policy checkbox */}
+            <FormInputCheckbox linkTitle='Privacy Policy' linkUrl='privacy-policy' />
+          </div>
 
           {/* submit btn */}
           <FormSubmitBtn btnTitle='Sign Up' />

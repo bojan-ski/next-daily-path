@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation"
 import PageHeader from "@/components/PageHeader"
 import FormInput from "@/components/FormInput"
 import FormSubmitBtn from "@/components/FormSubmitBtn"
-// lib
-import userSignIn from "@/lib/firebase/userSignIn"
 // firebase funcs
 import { auth } from "@/app/firebase.config"
 import { signInWithEmailAndPassword } from "firebase/auth"
+// lib
+import userSignIn from "@/lib/firebase/userSignIn"
 
 const SignIn = () => {
   const router = useRouter()
@@ -23,11 +23,11 @@ const SignIn = () => {
     const response = await signInWithEmailAndPassword(auth, enteredEmail, enteredPassword)  
     // const response = await userSignIn(enteredEmail, enteredPassword)
 
-    // console.log(response); 
     if (response) {
       e.target.elements[0].value = ''
       e.target.elements[1].value = ''
 
+      // navigate user
       router.push('/tasks')
     }
   }

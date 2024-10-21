@@ -19,6 +19,7 @@ const FormNewTask = () => {
 
     const createTaskAction = async (formData) => {
         const response = await addNewTaskData(formData)
+        
         if (response) {
             ref.current?.reset()
             getTasksList()

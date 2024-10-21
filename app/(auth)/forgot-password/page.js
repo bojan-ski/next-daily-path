@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation"
 import PageHeader from "@/components/PageHeader"
 import FormInput from "@/components/FormInput"
 import FormSubmitBtn from "@/components/FormSubmitBtn"
-// lib
-import userResetPassword from "@/lib/firebase/userResetPassword"
 // firebase func
 import { sendPasswordResetEmail } from "firebase/auth"
 import { auth } from "@/app/firebase.config"
+// lib
+import userResetPassword from "@/lib/firebase/userResetPassword"
 
 const ForgotPassword = () => {
   const router = useRouter()
@@ -22,10 +22,11 @@ const ForgotPassword = () => {
 
       const response = await sendPasswordResetEmail(auth, enteredEmail)
       // const response = await userResetPassword(enteredEmail)
-      
-      // console.log(response);
+
       if (response) {
         e.target.elements[0].value = ''
+
+        // navigate user
         router.push('/tasks')
       }
     }

@@ -13,6 +13,7 @@ const DeleteTaskBtn = ({ userID, taskID }) => {
     const handleDeleteTask = async () => {
         if (window.confirm('Are you sure you want to delete task')) {
             const response = await deleteTaskAction(userID, taskID)
+            
             if (response) {
                 const updatedTasksList = tasks.filter(task => task.docID !== taskID)
                 setTasks(updatedTasksList)
