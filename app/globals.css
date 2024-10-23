@@ -18,7 +18,11 @@ textarea {
 /* Home page */
 /* Hero component */
 .hero{
-  height: 700px;
+  height: 600px;
+}
+
+.hero .hero-img{
+  filter: blur(2.5px)
 }
 
 /* Tasks page */

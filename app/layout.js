@@ -3,10 +3,10 @@ import { AppProvider } from "./context";
 // components
 import Header from "@/components/appLayout/header/Header";
 import Footer from "@/components/appLayout/footer/Footer";
-// style
-import "./globals.css";
 // toast
 import { Toaster } from "react-hot-toast";
+// style
+import "./globals.css";
 
 export const metadata = {
   title: "Daily Path",

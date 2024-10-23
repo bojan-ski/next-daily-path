@@ -4,8 +4,10 @@ import { auth } from "@/app/firebase.config";
 import { signOut } from "firebase/auth";
 // icon
 import { FaSignOutAlt } from "react-icons/fa";
+// toast
+import toast from "react-hot-toast";
 
-const SignOutBtn = ({ setUserProfileDetails }) => {    
+const SignOutBtn = ({ setUserProfileDetails }) => {
     const router = useRouter()
 
     const logOutUser = async () => {
@@ -20,13 +22,15 @@ const SignOutBtn = ({ setUserProfileDetails }) => {
                 })
 
                 // success message
-                console.log('you have successfully logged out');
+                toast.success('You have successfully logged out')
+                // console.log('you have successfully logged out');
 
                 // navigate user
                 router.push('/')
             } catch (error) {
                 //error message
-                console.log(error);
+                toast.error('There was an error during the log out process')
+                // console.log(error);
             }
         }
     }
@@ -34,7 +38,7 @@ const SignOutBtn = ({ setUserProfileDetails }) => {
     return (
         <div className="sign-out-btn flex justify-end">
             <button onClick={() => logOutUser()} className="text-white bg-red-500 rounded-md px-4 py-2 hover:bg-red-600">
-                <FaSignOutAlt size={24}/>
+                <FaSignOutAlt size={24} />
             </button>
         </div>
     )

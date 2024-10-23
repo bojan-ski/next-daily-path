@@ -17,6 +17,8 @@ const DeleteTaskBtn = ({ userID, taskID }) => {
             if (response) {
                 const updatedTasksList = tasks.filter(task => task.docID !== taskID)
                 setTasks(updatedTasksList)
+
+                // success message
                 toast.success('Selected task has been removed')
             }
         }

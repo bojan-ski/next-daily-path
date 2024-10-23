@@ -18,7 +18,7 @@ const DiaryEntries = () => {
 
     // Redirect if user is not logged in
     useEffect(() => {
-        console.log('useEffect - DiaryEntries - 1');
+        // console.log('useEffect - DiaryEntries - 1');
         if (!userProfileDetails.userLoggedIn) {
             toast.error('You need to have an account in order to access the Diary');
             router.push('/');
@@ -29,10 +29,10 @@ const DiaryEntries = () => {
 
     // fetch page content
     useEffect(() => {
-        console.log('useEffect - DiaryEntries - 2');
+        // console.log('useEffect - DiaryEntries - 2');
         const getDiaryEntriesFromDB = async () => {
             if (userProfileDetails.userLoggedIn && userProfileDetails.userID) {
-                console.log('useEffect - fetchTasks');
+                // console.log('useEffect - fetchTasks');
                 await getDiaryEntries();
             }
         };

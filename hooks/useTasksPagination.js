@@ -2,6 +2,8 @@ import { useState } from "react";
 // firebase func
 import { collection, query, orderBy, startAfter, limit, getDocs } from "firebase/firestore";
 import { db } from "@/app/firebase.config";
+// toast
+import toast from "react-hot-toast";
 
 const useTasksPagination = (userID, itemsPerPage) => {
     const [tasks, setTasks] = useState([]);
@@ -54,7 +56,8 @@ const useTasksPagination = (userID, itemsPerPage) => {
             setPage(pageNumber);
         } catch (error) {
             //error message
-            console.log(error);
+            toast.error('There was an error fetching Tasks content')
+            // console.log(error);
         }
     };
 

@@ -6,11 +6,9 @@ import { onAuthStateChanged } from "firebase/auth"
 // custom hook
 import useTasksPagination from "@/hooks/useTasksPagination";
 
-
 const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-    // user details
     const [userProfileDetails, setUserProfileDetails] = useState({
         userLoggedIn: false,
         userID: '',
@@ -36,7 +34,6 @@ export const AppProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        console.log('useEffect - context');
         fetchUserDetails()
     }, [])
 

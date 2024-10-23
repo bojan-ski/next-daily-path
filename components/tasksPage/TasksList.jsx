@@ -15,7 +15,7 @@ const TasksList = () => {
 
     // Redirect if user is not logged in
     useEffect(() => {
-        console.log('useEffect - TasksList - 1');
+        // console.log('useEffect - TasksList - 1');
         if (!userProfileDetails.userLoggedIn) {
             toast.error('You need to have an account, in order to access the Tasks')
         return router.push('/')
@@ -24,10 +24,10 @@ const TasksList = () => {
 
     // fetch page content
     useEffect(() => {
-        console.log('useEffect - TasksList - 2');
+        // console.log('useEffect - TasksList - 2');
         const getTasksListFromDB = async () => {
             if (userProfileDetails.userLoggedIn && userProfileDetails.userID) {
-                console.log('useEffect - fetchTasks');
+                // console.log('useEffect - fetchTasks');
                 await getTasksList();
             }
         };

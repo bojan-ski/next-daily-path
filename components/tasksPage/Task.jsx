@@ -30,6 +30,7 @@ const Task = ({ task }) => {
                     } : item)
             );
 
+            // success message
             toast.success("Task updated successfully!");
         }
     }
