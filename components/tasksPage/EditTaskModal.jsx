@@ -7,32 +7,37 @@ import FormTextArea from "../FormTextArea"
 // toast
 import toast from "react-hot-toast"
 
-const EditTaskModal = ({ updateTaskData, toggleModal, setToggleModal, taskID, task}) => {
+const EditTaskModal = ({ updateTaskData, toggleModal, setToggleModal, taskID, task }) => {
     const { setTasks } = useGlobalContext()
 
     const updateTaskAction = async (formData) => {
-        const response = await updateTaskData(formData)
-        
-        if (response) {
-            setToggleModal(false);
+        try {
+            const response = await updateTaskData(formData)
 
-            setTasks(prevState =>
-                prevState.map(item =>
-                    item.docID === taskID
-                        ? {
-                            ...item,
-                            taskData: {
-                                ...item.taskData,
-                                taskTitle: response.taskTitle,
-                                taskContent: response.taskContent,
-                                taskDate: response.taskDate,
+            if (response) {
+                setToggleModal(false);
+
+                setTasks(prevState =>
+                    prevState.map(item =>
+                        item.docID === taskID
+                            ? {
+                                ...item,
+                                taskData: {
+                                    ...item.taskData,
+                                    taskTitle: response.taskTitle,
+                                    taskContent: response.taskContent,
+                                    taskDate: response.taskDate,
+                                }
                             }
-                        }
-                        : item
-                )
-            );
+                            : item
+                    )
+                );
 
-            toast.success("Task updated successfully!");
+                toast.success("Task updated successfully!");
+            }
+        } catch (error) {
+            // error message
+            toast.error('There was an error while updating task')
         }
     }
 

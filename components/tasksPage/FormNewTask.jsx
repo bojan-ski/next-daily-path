@@ -18,14 +18,19 @@ const FormNewTask = () => {
     const addNewTaskData = addNewTaskAction.bind(null, userProfileDetails.userID)
 
     const createTaskAction = async (formData) => {
-        const response = await addNewTaskData(formData)
+        try {
+            const response = await addNewTaskData(formData)
 
-        if (response) {
-            ref.current?.reset()
-            getTasksList()
+            if (response) {
+                ref.current?.reset()
+                getTasksList()
 
-            // success message
-            toast.success('New tasks created')
+                // success message
+                toast.success('New tasks created')
+            }
+        } catch (error) {
+            // error message
+            toast.error('There was an error while creating new task')
         }
     }
 

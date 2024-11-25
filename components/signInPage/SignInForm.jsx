@@ -21,20 +21,25 @@ const SignInForm = () => {
         const enteredEmail = e.target.elements[0].value
         const enteredPassword = e.target.elements[1].value
 
-        const response = await signInWithEmailAndPassword(auth, enteredEmail, enteredPassword)
-        
-        // -------- FIREBASE NIJE KOMPATIBILAN SA NEXT.js-om --------
-        // const response = await userSignIn(enteredEmail, enteredPassword)
+        try {
+            const response = await signInWithEmailAndPassword(auth, enteredEmail, enteredPassword)
 
-        if (response) {
-            e.target.elements[0].value = ''
-            e.target.elements[1].value = ''
+            // -------- FIREBASE NIJE KOMPATIBILAN SA NEXT.js-om --------
+            // const response = await userSignIn(enteredEmail, enteredPassword)
 
-            // success message
-            toast.success('You have successfully logged in')
+            if (response) {
+                e.target.elements[0].value = ''
+                e.target.elements[1].value = ''
 
-            // navigate user
-            router.push('/tasks')
+                // success message
+                toast.success('You have successfully logged in')
+
+                // navigate user
+                router.push('/tasks')
+            }
+        } catch (error) {
+            // error message
+            toast.error('There was an error while logging in')
         }
     }
 

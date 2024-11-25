@@ -12,14 +12,19 @@ const DeleteTaskBtn = ({ userID, taskID }) => {
 
     const handleDeleteTask = async () => {
         if (window.confirm('Are you sure you want to delete task')) {
-            const response = await deleteTaskAction(userID, taskID)
-            
-            if (response) {
-                const updatedTasksList = tasks.filter(task => task.docID !== taskID)
-                setTasks(updatedTasksList)
+            try {
+                const response = await deleteTaskAction(userID, taskID)
 
-                // success message
-                toast.success('Selected task has been removed')
+                if (response) {
+                    const updatedTasksList = tasks.filter(task => task.docID !== taskID)
+                    setTasks(updatedTasksList)
+
+                    // success message
+                    toast.success('Selected task has been removed')
+                }
+            } catch (error) {
+                // error message
+                toast.error('There was an error while deleting task')
             }
         }
     }

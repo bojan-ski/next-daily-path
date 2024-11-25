@@ -9,7 +9,7 @@ const DiaryEntrySearchOption = ({ getDiaryEntries, searchParam, setSearchParam }
 
     const handleSearch = e => {
         e.preventDefault()
-        if (searchParam == '' || searchParam.trim().length == 0) return toast.error('please enter search term');
+        if (searchParam == '' || searchParam.trim().length == 0) return toast.error('Please enter search term');
         setDisable(true)
         getDiaryEntries(0, searchParam.trim())
     }
@@ -21,7 +21,7 @@ const DiaryEntrySearchOption = ({ getDiaryEntries, searchParam, setSearchParam }
     }
 
     return (
-        <section className="search border-b-2 pb-8 mb-10">
+        <div className="search border-b-2 pb-8 mb-10">
             <form onSubmit={handleSearch}>
                 <div className="grid lg:grid-cols-2 gap-5">
                     <input
@@ -46,7 +46,7 @@ const DiaryEntrySearchOption = ({ getDiaryEntries, searchParam, setSearchParam }
                     )}
                 </div>
             </form>
-        </section>
+        </div>
     )
 }
 

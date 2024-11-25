@@ -18,27 +18,22 @@ const DiaryEntries = () => {
 
     // Redirect if user is not logged in
     useEffect(() => {
-        // console.log('useEffect - DiaryEntries - 1');
         if (!userProfileDetails.userLoggedIn) {
-            toast.error('You need to have an account in order to access the Diary');
+            toast.error('You need to have an account in order to access the Diary page');
             router.push('/');
         }
     }, [userProfileDetails.userLoggedIn, router]);
 
-    const { diaryEntries, getDiaryEntries, page } = useDiaryPagination(userProfileDetails.userID);
+    const { diaryEntries, getDiaryEntries, page, isLoading } = useDiaryPagination(userProfileDetails.userID);
 
     // fetch page content
     useEffect(() => {
-        // console.log('useEffect - DiaryEntries - 2');
         const getDiaryEntriesFromDB = async () => {
-            if (userProfileDetails.userLoggedIn && userProfileDetails.userID) {
-                // console.log('useEffect - fetchTasks');
-                await getDiaryEntries();
-            }
+            if ((userProfileDetails?.userLoggedIn && userProfileDetails?.userID) && diaryEntries.length == 0) await getDiaryEntries();
         };
 
         getDiaryEntriesFromDB();
-    }, [userProfileDetails.userID]);
+    }, [userProfileDetails.userID]);  
 
     // search feature - state
     const [searchParam, setSearchParam] = useState('')
@@ -56,7 +51,7 @@ const DiaryEntries = () => {
                     ))}
 
                     {/* pagination */}
-                    <Pagination page={page} getPageContentData={getDiaryEntries} />
+                    <Pagination page={page} getPageContentData={getDiaryEntries} isLoading={isLoading}/>
                 </>
             ) : (
                 <h2 className='text-stone-950 text-3xl text-center font-bold'>

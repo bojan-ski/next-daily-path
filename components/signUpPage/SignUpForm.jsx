@@ -57,7 +57,6 @@ const SignUpForm = () => {
     } catch (error) {
       // error message
       toast.error('There was an error while creating your account')
-      // console.log(error);
     }
   }
 

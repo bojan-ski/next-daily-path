@@ -4,7 +4,7 @@ const DiaryEntry = ({ entry }) => {
     return (
         <div key={entry.id} className="mb-10">
             <div className="flex items-center justify-between mb-7">
-                <h2 className="text-4xl font-bold text-center capitalize">
+                <h2 className="text-4xl font-bold text-center">
                     {entry.data.newDiaryEntryTitle}
                 </h2>
 

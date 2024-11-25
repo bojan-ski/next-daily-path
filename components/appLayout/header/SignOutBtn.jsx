@@ -23,14 +23,12 @@ const SignOutBtn = ({ setUserProfileDetails }) => {
 
                 // success message
                 toast.success('You have successfully logged out')
-                // console.log('you have successfully logged out');
 
                 // navigate user
                 router.push('/')
             } catch (error) {
                 //error message
                 toast.error('There was an error during the log out process')
-                // console.log(error);
             }
         }
     }

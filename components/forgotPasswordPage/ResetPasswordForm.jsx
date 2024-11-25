@@ -20,19 +20,24 @@ const ResetPasswordForm = () => {
         if (window.confirm('Are you sure you want to reset Your password?')) {
             const enteredEmail = e.target.elements[0].value.trim()
 
-            const response = await sendPasswordResetEmail(auth, enteredEmail)
+            try {
+                const response = await sendPasswordResetEmail(auth, enteredEmail)
 
-            // -------- FIREBASE NIJE KOMPATIBILAN SA NEXT.js-om --------
-            // const response = await userResetPassword(enteredEmail)
+                // -------- FIREBASE NIJE KOMPATIBILAN SA NEXT.js-om --------
+                // const response = await userResetPassword(enteredEmail)
 
-            if (response) {
-                e.target.elements[0].value = ''
+                if (response) {
+                    e.target.elements[0].value = ''
 
-                // success message
-                toast.success('Please check you email')
+                    // success message
+                    toast.success('Please check you email')
 
-                // navigate user
-                router.push('/')
+                    // navigate user
+                    router.push('/')
+                }
+            } catch (error) {
+                // error message
+                toast.error('There was an error while password reset')
             }
         }
     }

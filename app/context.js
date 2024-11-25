@@ -9,6 +9,7 @@ import useTasksPagination from "@/hooks/useTasksPagination";
 const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
+    // USER PROFILE - DATA
     const [userProfileDetails, setUserProfileDetails] = useState({
         userLoggedIn: false,
         userID: '',
@@ -34,20 +35,24 @@ export const AppProvider = ({ children }) => {
     };
 
     useEffect(() => {
+        console.log('useEffect - context');
+        
         fetchUserDetails()
     }, [])
 
     // TASKS
-    const itemsPerPage = 10;
-    const { tasks, setTasks, getTasksList, page } = useTasksPagination(userProfileDetails.userID, itemsPerPage);
+    const itemsPerPage = 2;
+    const { tasks, setTasks, getTasksList, page, isLoading } = useTasksPagination(userProfileDetails.userID, itemsPerPage);
 
     return <AppContext.Provider value={{
-        userProfileDetails, // OnboardingOptions, FormNewTask, TasksList, Task
-        setUserProfileDetails, // SignOutBtn
+        userProfileDetails, // AuthenticationOptions, FormNewTask, TasksList, Task
+        setUserProfileDetails, // AuthenticationOptions
+
         tasks, // TasksList, DeleteTaskBtn
-        setTasks, // DeleteTaskBtn, EditTaskModal, Task
+        setTasks, // Task, DeleteTaskBtn, EditTaskModal 
         getTasksList, // FormNewTask, TasksList
         page, // TasksList
+        isLoading, // TasksList
     }}>
         {children}
     </AppContext.Provider>

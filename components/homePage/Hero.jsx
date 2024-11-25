@@ -8,15 +8,15 @@ const Hero = () => {
             <Image src={HeroImg} alt="hero" className="hero-img object-cover object-top" fill placeholder="blur" quality={80} />
 
             <div className="relative z-10 text-center text-orange-600">
-                <h1 className="text-7xl mb-10">
+                <h2 className="text-8xl mb-10">
                     Organize your day
-                </h1>
-                <h2 className="text-5xl">
-                    with
-                    <span className="ms-3 text-7xl font-bold">
-                        DAILY PATH
-                    </span>
                 </h2>
+                <h3 className="text-6xl mb-10">
+                    with
+                </h3>
+                <h1 className="text-8xl font-bold">
+                    DAILY PATH
+                </h1>
             </div>
         </section>
     )
