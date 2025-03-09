@@ -2,11 +2,12 @@
 import { useContext, createContext, useState, useEffect } from "react";
 // firebase/firestore funcs
 import { auth } from "./firebase.config";
-import { onAuthStateChanged } from "firebase/auth"
+import { onAuthStateChanged } from "firebase/auth";
 // custom hook
 import useTasksPagination from "@/hooks/useTasksPagination";
 
-const AppContext = createContext()
+
+const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
     // USER PROFILE - DATA
@@ -34,18 +35,16 @@ export const AppProvider = ({ children }) => {
         });
     };
 
-    useEffect(() => {
-        console.log('useEffect - context');
-        
-        fetchUserDetails()
+    useEffect(() => {        
+        fetchUserDetails();
     }, [])
 
     // TASKS
-    const itemsPerPage = 2;
-    const { tasks, setTasks, getTasksList, page, isLoading } = useTasksPagination(userProfileDetails.userID, itemsPerPage);
+    const itemsPerPage = 8;
+    const { tasks, setTasks, getTasksList, page, isLoading } = useTasksPagination(userProfileDetails?.userID, itemsPerPage);
 
     return <AppContext.Provider value={{
-        userProfileDetails, // AuthenticationOptions, FormNewTask, TasksList, Task
+        userProfileDetails, // AuthenticationOptions, FormNewTask, TasksList, Task, DiaryEntries, FormNewDiaryEntry
         setUserProfileDetails, // AuthenticationOptions
 
         tasks, // TasksList, DeleteTaskBtn

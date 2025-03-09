@@ -1,17 +1,18 @@
 'use client'
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 // context
-import { useGlobalContext } from "@/app/context"
+import { useGlobalContext } from "@/app/context";
 // components
-import Task from "./Task"
-import Pagination from "../Pagination"
+import Task from "./Task";
+import Pagination from "../Pagination";
 // toast
-import toast from "react-hot-toast"
+import toast from "react-hot-toast";
+
 
 const TasksList = () => {
-    const router = useRouter()
-    const { userProfileDetails, tasks, getTasksList, page, isLoading } = useGlobalContext()
+    const router = useRouter();
+    const { userProfileDetails, tasks, getTasksList, page, isLoading } = useGlobalContext();
 
     // Redirect if user is not logged in
     useEffect(() => {

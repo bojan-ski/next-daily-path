@@ -1,36 +1,35 @@
 'use client'
-import { useRef } from "react"
+import { useRef } from "react";
 // context
-import { useGlobalContext } from "@/app/context"
+import { useGlobalContext } from "@/app/context";
 // lib - actions
-import { addNewTaskAction } from "@/lib/actions/taskActions"
+import { addNewTaskAction } from "@/lib/actions/taskActions";
 // components
-import FormInput from "../FormInput"
-import FormTextArea from "../FormTextArea"
-import FormSubmitBtn from "../FormSubmitBtn"
+import FormInput from "../FormInput";
+import FormTextArea from "../FormTextArea";
+import FormSubmitBtn from "../FormSubmitBtn";
 // toast
-import toast from "react-hot-toast"
+import toast from "react-hot-toast";
+
 
 const FormNewTask = () => {
-    const { userProfileDetails, getTasksList } = useGlobalContext()
-    const ref = useRef(null)
+    const { userProfileDetails, getTasksList } = useGlobalContext();
+    const ref = useRef(null);
 
-    const addNewTaskData = addNewTaskAction.bind(null, userProfileDetails.userID)
+    const addNewTaskData = addNewTaskAction.bind(null, userProfileDetails.userID);
 
     const createTaskAction = async (formData) => {
-        try {
-            const response = await addNewTaskData(formData)
+        const response = await addNewTaskData(formData);
 
-            if (response) {
-                ref.current?.reset()
-                getTasksList()
+        if (response) {
+            ref.current?.reset();
+            getTasksList();
 
-                // success message
-                toast.success('New tasks created')
-            }
-        } catch (error) {
+            // success message
+            toast.success('New tasks created');
+        } else {
             // error message
-            toast.error('There was an error while creating new task')
+            toast.error('There was an error while creating new task');
         }
     }
 

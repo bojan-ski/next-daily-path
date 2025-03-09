@@ -3,8 +3,8 @@ import Image from "next/image";
 import AppDescColOne from "./AppDescColOne";
 import AppDescColTwo from "./AppDescColTwo";
 // public
-import homeImgOne from '@/public/home-img-one.jpg'
-import homeImgTwo from '@/public/home-img-two.jpg'
+import homeImgOne from '@/public/home-img-one.jpg';
+import homeImgTwo from '@/public/home-img-two.jpg';
 
 
 const AppDescription = () => {

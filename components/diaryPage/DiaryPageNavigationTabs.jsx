@@ -1,9 +1,10 @@
 'use client'
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 
 const DiaryPageNavigationTabs = () => {
-    const pathname = usePathname()
+    const pathname = usePathname();
 
     return (
         <div className="container">
@@ -11,6 +12,7 @@ const DiaryPageNavigationTabs = () => {
                 <Link role="tab" className={`tab font-bold text-xl ${pathname == '/diary' && 'tab-active text-orange-500'}`} href='/diary'>
                     Diary
                 </Link>
+                
                 <Link role="tab" className={`tab font-bold text-xl ${pathname == '/diary/new-entry' && 'tab-active text-orange-500'}`} href='/diary/new-entry'>
                     New Entry
                 </Link>

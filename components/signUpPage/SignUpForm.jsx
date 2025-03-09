@@ -1,84 +1,49 @@
 'use client'
-import { useRouter } from "next/navigation"
-// components
-import FormInput from "../FormInput"
-import FormInputCheckbox from "../FormInputCheckbox"
-import FormSubmitBtn from "../FormSubmitBtn"
-// firebase funcs
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
-import { doc, serverTimestamp, setDoc } from "firebase/firestore"
-import { auth, db } from "@/app/firebase.config"
-// toast
-import toast from "react-hot-toast"
+import { useRouter } from "next/navigation";
 // lib
-import userSignUp from "@/lib/firebase/userSignUp"
+import createAccount from "@/lib/firebase/createAccount";
+// components
+import FormInput from "../FormInput";
+import FormInputCheckbox from "../FormInputCheckbox";
+import FormSubmitBtn from "../FormSubmitBtn";
+// toast
+import toast from "react-hot-toast";
+
 
 const SignUpForm = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSignUpUserSubmit = async e => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const enteredUsername = e.target.elements[0].value.trim()
-    const enteredEmail = e.target.elements[1].value.trim()
-    const enteredPassword = e.target.elements[2].value
+    const enteredUsername = e.target.elements[0].value.trim();
+    const enteredEmail = e.target.elements[1].value.trim();
+    const enteredPassword = e.target.elements[2].value;
 
-    try {
-      // create account
-      const userCredentials = await createUserWithEmailAndPassword(auth, enteredEmail, enteredPassword)
-      const newUser = userCredentials.user
+    // check fields
+    if (!enteredUsername || !enteredEmail || !enteredPassword) return toast.error('All fields are required!');
 
-      // update user - username
-      updateProfile(auth.currentUser, {
-        displayName: enteredUsername
-      })
+    // if all good 
+    const response = await createAccount(enteredUsername, enteredEmail, enteredPassword);
 
-      // store in db
-      const userCredentialsCopy = {
-        enteredUsername,
-        enteredEmail,
-        timestamp: serverTimestamp()
-      }
-
-      await setDoc(doc(db, 'users', newUser.uid), userCredentialsCopy)
-
+    if (response) {
       // success message
       toast.success('your account has been created');
 
       // clear form fields
-      e.target.elements[0].value = ''
-      e.target.elements[1].value = ''
-      e.target.elements[2].value = ''
-      e.target.elements[3].checked = false
-      e.target.elements[4].checked = false
+      e.target.elements[0].value = '';
+      e.target.elements[1].value = '';
+      e.target.elements[2].value = '';
+      e.target.elements[3].checked = false;
+      e.target.elements[4].checked = false;
 
       // navigate user
-      router.push('/tasks')
-    } catch (error) {
+      router.push('/tasks');
+    } else {
       // error message
-      toast.error('There was an error while creating your account')
+      toast.error('There was an error while creating your account');
     }
   }
-
-  // -------- FIREBASE NIJE KOMPATIBILAN SA NEXT.js-om --------
-  // const handleSignUpUserSubmit = async e => {
-  //   e.preventDefault()
-
-  //   const enteredUsername = e.target.elements[0].value.trim()
-  //   const enteredEmail = e.target.elements[1].value.trim()
-  //   const enteredPassword = e.target.elements[2].value
-
-  //   const response = await userSignUp(enteredUsername, enteredEmail, enteredPassword)
-  //   console.log(response);
-
-  //   if (response) {      
-  //     e.target.elements[0].value = ''
-  //     e.target.elements[1].value = ''
-  //     e.target.elements[2].value = ''
-  //     e.target.elements[3].checked = false
-  //     e.target.elements[4].checked = false
-  //   }
-  // }
 
   return (
     <form onSubmit={handleSignUpUserSubmit}>

@@ -1,5 +1,5 @@
 // context
-import { useGlobalContext } from "@/app/context"
+import { useGlobalContext } from "@/app/context";
 // lib - actions
 import { updateIsTaskCompletedAction } from "@/lib/actions/taskActions";
 // components
@@ -8,37 +8,36 @@ import DeleteTaskBtn from "./DeleteTaskBtn";
 // toast
 import toast from "react-hot-toast";
 
+
 const Task = ({ task }) => {
-    const { userProfileDetails, setTasks } = useGlobalContext()
-    const userID = userProfileDetails?.userID
-    const taskID = task?.docID
+    const { userProfileDetails, setTasks } = useGlobalContext();
+    const userID = userProfileDetails?.userID;
+    const taskID = task?.docID;
 
     const updateTaskData = updateIsTaskCompletedAction.bind(null, userID, taskID)
 
     const handleChange = async e => {
         const taskStatus = e.target.checked;
 
-        try {
-            const response = await updateTaskData(taskStatus)
+        const response = await updateTaskData(taskStatus);
 
-            if (response) {
-                setTasks(prevState =>
-                    prevState.map(item =>
-                        item.docID === taskID ? {
-                            ...item,
-                            taskData: {
-                                ...item.taskData,
-                                isCompleted: taskStatus,
-                            }
-                        } : item)
-                );
+        if (response) {
+            setTasks(prevState =>
+                prevState.map(item =>
+                    item.docID === taskID ? {
+                        ...item,
+                        taskData: {
+                            ...item.taskData,
+                            isCompleted: taskStatus,
+                        }
+                    } : item)
+            );
 
-                // success message
-                toast.success("Task updated successfully!");
-            }
-        } catch (error) {
+            // success message
+            toast.success("Task updated successfully!");
+        } else {
             // error message
-            toast.error('There was an error while setting task as completed')
+            toast.error('There was an error while setting task as completed');
         }
     }
 

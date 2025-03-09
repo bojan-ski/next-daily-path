@@ -1,43 +1,36 @@
 'use client'
-import { useRouter } from "next/navigation"
-// components
-import FormInput from "@/components/FormInput"
-import FormSubmitBtn from "@/components/FormSubmitBtn"
-// firebase func
-import { sendPasswordResetEmail } from "firebase/auth"
-import { auth } from "@/app/firebase.config"
-// toast
-import toast from "react-hot-toast"
+import { useRouter } from "next/navigation";
 // lib
-import userResetPassword from "@/lib/firebase/userResetPassword"
+import resetPassword from "@/lib/firebase/resetPassword";
+// components
+import FormInput from "@/components/FormInput";
+import FormSubmitBtn from "@/components/FormSubmitBtn";
+// toast
+import toast from "react-hot-toast";
+
 
 const ResetPasswordForm = () => {
-    const router = useRouter()
+    const router = useRouter();
 
     const handleResetPassword = async e => {
-        e.preventDefault()
+        e.preventDefault();
 
         if (window.confirm('Are you sure you want to reset Your password?')) {
-            const enteredEmail = e.target.elements[0].value.trim()
+            const enteredEmail = e.target.elements[0].value.trim();
 
-            try {
-                const response = await sendPasswordResetEmail(auth, enteredEmail)
+            const response = await resetPassword(enteredEmail);
 
-                // -------- FIREBASE NIJE KOMPATIBILAN SA NEXT.js-om --------
-                // const response = await userResetPassword(enteredEmail)
+            if (response) {
+                e.target.elements[0].value = '';
 
-                if (response) {
-                    e.target.elements[0].value = ''
+                // success message
+                toast.success('Please check you email');
 
-                    // success message
-                    toast.success('Please check you email')
-
-                    // navigate user
-                    router.push('/')
-                }
-            } catch (error) {
+                // navigate user
+                router.push('/');
+            } else {
                 // error message
-                toast.error('There was an error while password reset')
+                toast.error('There was an error while password reset');
             }
         }
     }

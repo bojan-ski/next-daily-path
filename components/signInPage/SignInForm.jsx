@@ -1,45 +1,41 @@
 'use client'
-import { useRouter } from "next/navigation"
-// components
-import FormInput from "@/components/FormInput"
-import FormSubmitBtn from "@/components/FormSubmitBtn"
-// firebase funcs
-import { auth } from "@/app/firebase.config"
-import { signInWithEmailAndPassword } from "firebase/auth"
-// toast
-import toast from "react-hot-toast"
+import { useRouter } from "next/navigation";
 // lib
-import userSignIn from "@/lib/firebase/userSignIn"
+import userLogin from "@/lib/firebase/userLogin";
+// components
+import FormInput from "@/components/FormInput";
+import FormSubmitBtn from "@/components/FormSubmitBtn";
+// toast
+import toast from "react-hot-toast";
 
 
 const SignInForm = () => {
     const router = useRouter()
 
     const handleSignInUserSubmit = async e => {
-        e.preventDefault()
+        e.preventDefault();
 
-        const enteredEmail = e.target.elements[0].value
-        const enteredPassword = e.target.elements[1].value
+        const enteredEmail = e.target.elements[0].value.trim();
+        const enteredPassword = e.target.elements[1].value;
 
-        try {
-            const response = await signInWithEmailAndPassword(auth, enteredEmail, enteredPassword)
+        // check fields
+        if (!enteredEmail || !enteredPassword) return toast.error('All fields are required!');
 
-            // -------- FIREBASE NIJE KOMPATIBILAN SA NEXT.js-om --------
-            // const response = await userSignIn(enteredEmail, enteredPassword)
+        // if all good 
+        const response = await userLogin(enteredEmail, enteredPassword);
 
-            if (response) {
-                e.target.elements[0].value = ''
-                e.target.elements[1].value = ''
+        if (response) {
+            e.target.elements[0].value = '';
+            e.target.elements[1].value = '';
 
-                // success message
-                toast.success('You have successfully logged in')
+            // success message
+            toast.success('You have successfully logged in');
 
-                // navigate user
-                router.push('/tasks')
-            }
-        } catch (error) {
+            // navigate user
+            router.push('/tasks');
+        } else {
             // error message
-            toast.error('There was an error while logging in')
+            toast.error('There was an error while logging in');
         }
     }
 

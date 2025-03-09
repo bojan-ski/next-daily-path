@@ -4,18 +4,20 @@ import { useState } from "react";
 import { FaSun } from "react-icons/fa";
 import { FaMoon } from "react-icons/fa6";
 
+
 const themes = {
     light: 'winter',
     dark: 'dracula'
 }
 
 const ThemeToggle = () => {
-    const [theme, setTheme] = useState(themes.light)
+    const [theme, setTheme] = useState(themes.light);
 
     const toggleTheme = () => {
-        const newTheme = theme == themes.light ? themes.dark : themes.light
-        document.documentElement.setAttribute('data-theme', newTheme)
-        setTheme(newTheme)
+        const newTheme = theme == themes.light ? themes.dark : themes.light;
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        setTheme(newTheme);
     }
 
     return (

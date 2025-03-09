@@ -11,7 +11,7 @@ const Error = ({ error, reset }) => {
                     {error.message}
                 </p>
 
-                <button className='btn btn-warning text-xl' onClick={reset}>
+                <button className='btn bg-orange-300 hover:bg-orange-400 text-white text-xl' onClick={reset}>
                     Try again
                 </button>
             </div>

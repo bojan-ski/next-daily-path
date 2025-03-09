@@ -1,8 +1,9 @@
 // components
-import BackButton from '@/components/BackButton'
-import PageHeader from '@/components/PageHeader'
+import BackButton from '@/components/BackButton';
+import PageHeader from '@/components/PageHeader';
 // data 
-import termsAndConditions from '@/data/termsAndConditions'
+import termsAndConditions from '@/data/termsAndConditions';
+
 
 const TermsAndConditions = () => {
   return (

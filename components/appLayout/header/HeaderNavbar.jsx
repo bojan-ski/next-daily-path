@@ -1,11 +1,12 @@
 'use client'
-import Link from "next/link"
+import Link from "next/link";
 import { usePathname } from 'next/navigation';
 // data - links
-import { navigationLinks } from "@/data/navigationLinks"
+import { navigationLinks } from "@/data/navigationLinks";
+
 
 const HeaderNavbar = () => {
-    const pathname = usePathname()
+    const pathname = usePathname();
 
     return (
         <nav className="navbar-header my-3 hidden md:block">

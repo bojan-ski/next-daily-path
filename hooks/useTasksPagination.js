@@ -5,6 +5,7 @@ import { db } from "@/app/firebase.config";
 // toast
 import toast from "react-hot-toast";
 
+
 const useTasksPagination = (userID, itemsPerPage) => {
     const [tasks, setTasks] = useState([]);
     const [pageSnapshots, setPageSnapshots] = useState([]);
@@ -31,10 +32,10 @@ const useTasksPagination = (userID, itemsPerPage) => {
 
                 updatedSnapshots = [];
                 setPageSnapshots(updatedSnapshots);
-            } else if (pageNumber > page) {  
+            } else if (pageNumber > page) {
                 // Moving forward, use the last snapshot of the current page              
                 let lastVisible = updatedSnapshots[updatedSnapshots.length - 1];
-              
+
                 q = query(...baseQuery, startAfter(lastVisible));
             } else if (pageNumber < page) {
                 // Moving back, use the snapshot of the previous page
@@ -63,17 +64,17 @@ const useTasksPagination = (userID, itemsPerPage) => {
             setPageSnapshots(updatedSnapshots);
 
             // Replace the listings with the new set of documents for the current page
-            setTasks(querySnapshot.docs.map(doc => ({ 
-                docID: doc.id, 
+            setTasks(querySnapshot.docs.map(doc => ({
+                docID: doc.id,
                 taskData: doc.data()
-             })));
+            })));
             setPage(pageNumber);
         } catch (error) {
             //error message
-            toast.error('There was an error fetching Tasks content')            
+            toast.error('There was an error fetching Tasks content');
         }
 
-        setIsLoading(false);         
+        setIsLoading(false);
     };
 
     return { tasks, setTasks, getTasksList, page, isLoading };

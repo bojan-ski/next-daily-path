@@ -7,13 +7,14 @@ import { FaSignOutAlt } from "react-icons/fa";
 // toast
 import toast from "react-hot-toast";
 
+
 const SignOutBtn = ({ setUserProfileDetails }) => {
-    const router = useRouter()
+    const router = useRouter();
 
     const logOutUser = async () => {
-        if (window.confirm('Are you sure you want to log out')) {
+        if (window.confirm('Are you sure you want to log out?')) {
             try {
-                await signOut(auth)
+                await signOut(auth);
 
                 setUserProfileDetails({
                     userLoggedIn: false,
@@ -22,13 +23,13 @@ const SignOutBtn = ({ setUserProfileDetails }) => {
                 })
 
                 // success message
-                toast.success('You have successfully logged out')
+                toast.success('You have successfully logged out');
 
                 // navigate user
-                router.push('/')
+                router.push('/');
             } catch (error) {
                 //error message
-                toast.error('There was an error during the log out process')
+                toast.error('There was an error during the log out process');
             }
         }
     }

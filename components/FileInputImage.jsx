@@ -1,6 +1,7 @@
 // icon
 import { RiImageAddFill } from "react-icons/ri";
 
+
 const FileInputImage = ({ image, onMutate, inputId }) => (
     <div className="mb-3">
         <input

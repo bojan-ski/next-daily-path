@@ -1,11 +1,12 @@
 'use client'
-import Link from "next/link"
+import Link from "next/link";
 import { usePathname } from 'next/navigation';
 // data - links icons
 import { navigationLinksIcons } from "@/data/navigationLinkIcons";
 
+
 const FooterNavbar = () => {
-    const pathname = usePathname()  
+    const pathname = usePathname();
     
     return (
         <nav className="navbar-footer my-3 md:hidden">

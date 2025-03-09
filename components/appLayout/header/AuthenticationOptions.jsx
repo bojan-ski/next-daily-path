@@ -1,15 +1,16 @@
 'use client'
-import Link from "next/link"
+import Link from "next/link";
 // context
-import { useGlobalContext } from "@/app/context"
+import { useGlobalContext } from "@/app/context";
 // component
-import SignOutBtn from "./SignOutBtn"
+import SignOutBtn from "./SignOutBtn";
 // icon
 import { FaWpforms } from "react-icons/fa";
 import { IoIosLogIn } from "react-icons/io";
 
+
 const AuthenticationOptions = () => {
-    const { userProfileDetails, setUserProfileDetails } = useGlobalContext()
+    const { userProfileDetails, setUserProfileDetails } = useGlobalContext();
 
     return (
         <>

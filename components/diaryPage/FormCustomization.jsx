@@ -13,6 +13,7 @@ const FormCustomization = ({ setCustomEntry }) => {
                         }))} />
                     </label>
                 </div>
+
                 {/* entry content toggle */}
                 <div className="form-control border border-orange-300 rounded-full px-4 py-2">
                     <label className="label cursor-pointer">
@@ -24,6 +25,7 @@ const FormCustomization = ({ setCustomEntry }) => {
                         }))} />
                     </label>
                 </div>
+                
                 {/* image two toggle */}
                 <div className="form-control border border-orange-300 rounded-full px-4 py-2">
                     <label className="label cursor-pointer">

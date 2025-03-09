@@ -1,7 +1,8 @@
-import { useFormStatus } from 'react-dom'
+import { useFormStatus } from 'react-dom';
+
 
 const FormSubmitBtn = ({ btnTitle }) => {
-    const { pending } = useFormStatus()    
+    const { pending } = useFormStatus();    
 
     return (
         <button

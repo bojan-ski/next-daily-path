@@ -12,13 +12,14 @@ import Pagination from "../Pagination";
 // toast
 import toast from "react-hot-toast";
 
+
 const DiaryEntries = () => {
-    const router = useRouter()
-    const { userProfileDetails } = useGlobalContext()
+    const router = useRouter();
+    const { userProfileDetails } = useGlobalContext();
 
     // Redirect if user is not logged in
     useEffect(() => {
-        if (!userProfileDetails.userLoggedIn) {
+        if (!userProfileDetails?.userLoggedIn) {
             toast.error('You need to have an account in order to access the Diary page');
             router.push('/');
         }
@@ -36,7 +37,7 @@ const DiaryEntries = () => {
     }, [userProfileDetails.userID]);  
 
     // search feature - state
-    const [searchParam, setSearchParam] = useState('')
+    const [searchParam, setSearchParam] = useState('');
 
     return (
         <div className="diary-page">

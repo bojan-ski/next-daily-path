@@ -1,9 +1,10 @@
-import Image from 'next/image'
+import Image from 'next/image';
 // public - logo
-import Logo from '@/public/logo.jpg'
+import Logo from '@/public/logo.jpg';
 // components
-import ThemeToggle from "./ThemeToggle"
-import AuthenticationOptions from "./AuthenticationOptions"
+import ThemeToggle from "./ThemeToggle";
+import AuthenticationOptions from "./AuthenticationOptions";
+
 
 const TopHeader = () => {
     return (

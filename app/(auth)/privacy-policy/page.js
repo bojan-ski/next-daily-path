@@ -1,8 +1,9 @@
 // components
-import BackButton from '@/components/BackButton'
-import PageHeader from '@/components/PageHeader'
+import BackButton from '@/components/BackButton';
+import PageHeader from '@/components/PageHeader';
 // data 
-import privacyPolicy from '@/data/termsAndConditions'
+import privacyPolicy from '@/data/termsAndConditions';
+
 
 const PrivacyPolicy = () => {
   return (

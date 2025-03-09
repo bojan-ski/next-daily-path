@@ -4,14 +4,15 @@ import { collection, query, orderBy, startAfter, limit, getDocs, where } from "f
 import { db } from "@/app/firebase.config";
 import toast from "react-hot-toast";
 
+
 const useDiaryPagination = (userID) => {
-    const itemsPerPage = 1
+    const itemsPerPage = 1;
     const [diaryEntries, setDiaryEntries] = useState([]);
     const [pageSnapshots, setPageSnapshots] = useState([]);
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
-    const getDiaryEntries = async (pageNumber = 0, searchTerm = '', reset = false) => { 
+    const getDiaryEntries = async (pageNumber = 0, searchTerm = '', reset = false) => {
         setIsLoading(true);
 
         let updatedSnapshots = pageSnapshots;
@@ -34,13 +35,13 @@ const useDiaryPagination = (userID) => {
                 q = query(
                     ...queryParams
                 );
-                
-               updatedSnapshots = [];
+
+                updatedSnapshots = [];
                 setPageSnapshots(updatedSnapshots);
-            } else if (pageNumber > page) {  
+            } else if (pageNumber > page) {
                 // Moving forward, use the last snapshot of the current page              
                 let lastVisible = updatedSnapshots[updatedSnapshots.length - 1];
-              
+
                 q = query(...queryParams, startAfter(lastVisible));
             } else if (pageNumber < page) {
                 // Moving back, use the snapshot of the previous page
@@ -76,10 +77,10 @@ const useDiaryPagination = (userID) => {
             setPage(pageNumber);
         } catch (error) {
             // error message
-            toast.error('There was an error fetching Diary pages')
+            toast.error('There was an error fetching Diary pages');
         }
 
-        setIsLoading(false);        
+        setIsLoading(false);
     };
 
     return { diaryEntries, getDiaryEntries, page, isLoading };

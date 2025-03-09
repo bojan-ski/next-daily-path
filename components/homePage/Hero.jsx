@@ -1,6 +1,7 @@
-import Image from "next/image"
+import Image from "next/image";
 // public
-import HeroImg from '@/public/hero.jpg'
+import HeroImg from '@/public/hero.jpg';
+
 
 const Hero = () => {
     return (

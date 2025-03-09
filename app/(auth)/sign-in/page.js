@@ -1,11 +1,13 @@
-import Link from "next/link"
+import Link from "next/link";
 // components
-import PageHeader from "@/components/PageHeader"
-import SignInForm from "@/components/signInPage/SignInForm"
+import PageHeader from "@/components/PageHeader";
+import SignInForm from "@/components/signInPage/SignInForm";
+
 
 const SignIn = () => {
   return (
     <div className='sign-in-page mt-10'>
+      
       <PageHeader pageTitle="Sign In" />
 
       <section className='sign-in-form bg-orange-100 w-1/2 mx-auto my-10 px-10 py-8 rounded-lg'>

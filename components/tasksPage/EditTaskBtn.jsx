@@ -6,9 +6,10 @@ import EditTaskModal from "./EditTaskModal";
 // icon
 import { FaEdit } from "react-icons/fa";
 
+
 const EditTaskBtn = ({ userID, taskID, task }) => {
-    const [toggleModal, setToggleModal] = useState(false)
-    const updateTaskData = updateTaskDataAction.bind(null, userID, taskID)
+    const [toggleModal, setToggleModal] = useState(false);
+    const updateTaskData = updateTaskDataAction.bind(null, userID, taskID);
 
     return (
         <>

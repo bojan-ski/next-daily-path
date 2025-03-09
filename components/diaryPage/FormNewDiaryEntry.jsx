@@ -1,17 +1,13 @@
-'use client'
-import { useState } from "react"
-// context
-import { useGlobalContext } from "@/app/context"
-// lib - actions
-import { addNewDiaryEntryAction } from "@/lib/actions/diaryActions"
+import { useState } from "react";
+import { redirect } from "next/navigation";
 // components
-import FormTextArea from "@/components/FormTextArea"
-import FileInputImage from "../FileInputImage"
-import FormSubmitBtn from "@/components/FormSubmitBtn"
+import FormTextArea from "@/components/FormTextArea";
+import FileInputImage from "../FileInputImage";
+import FormSubmitBtn from "@/components/FormSubmitBtn";
+import toast from "react-hot-toast";
 
-const FormNewDiaryEntry = ({ customEntry }) => {
-    const { userProfileDetails } = useGlobalContext()
 
+const FormNewDiaryEntry = ({ customEntry, addNewDiaryEntryData }) => {
     const [uploadedImagesData, setUploadedImagesData] = useState({
         newDiaryEntryImgOne: null,
         newDiaryEntryImgTwo: null,
@@ -19,18 +15,33 @@ const FormNewDiaryEntry = ({ customEntry }) => {
 
     const onMutate = (e, imageField) => {
         const { files } = e.target;
+
         setUploadedImagesData((prevState) => ({
             ...prevState,
             [imageField]: files[0],
         }));
     };
 
-    const addNewDiaryEntryData = addNewDiaryEntryAction.bind(null, userProfileDetails.userID, userProfileDetails.userUsername)
+    const handleCreateNewEntry = async (formData) => {
+        const response = await addNewDiaryEntryData(formData);
+
+        if (response) {
+            // success message
+            toast.success('New diary entry created');
+
+            // redirect user
+            redirect('/diary');
+        } else {
+            // error message
+            toast.error('There was an error creating a new Diary entry');
+        }
+    }
+
 
     return (
         <section className='new-diary-entry-form bg-orange-100 py-5 px-10 mb-10 w-full mx-auto rounded-xl'>
             <div>
-                <form className="text-center" action={addNewDiaryEntryData}>
+                <form className="text-center" action={handleCreateNewEntry}>
                     <input
                         className="input input-bordered w-1/2 mb-10"
                         type="text"

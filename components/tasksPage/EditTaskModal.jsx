@@ -1,43 +1,42 @@
 // context
-import { useGlobalContext } from "@/app/context"
+import { useGlobalContext } from "@/app/context";
 // components
-import FormInput from "../FormInput"
-import FormSubmitBtn from "../FormSubmitBtn"
-import FormTextArea from "../FormTextArea"
+import FormInput from "../FormInput";
+import FormSubmitBtn from "../FormSubmitBtn";
+import FormTextArea from "../FormTextArea";
 // toast
-import toast from "react-hot-toast"
+import toast from "react-hot-toast";
+
 
 const EditTaskModal = ({ updateTaskData, toggleModal, setToggleModal, taskID, task }) => {
-    const { setTasks } = useGlobalContext()
+    const { setTasks } = useGlobalContext();
 
     const updateTaskAction = async (formData) => {
-        try {
-            const response = await updateTaskData(formData)
+        const response = await updateTaskData(formData);
 
-            if (response) {
-                setToggleModal(false);
+        if (response) {
+            setToggleModal(false);
 
-                setTasks(prevState =>
-                    prevState.map(item =>
-                        item.docID === taskID
-                            ? {
-                                ...item,
-                                taskData: {
-                                    ...item.taskData,
-                                    taskTitle: response.taskTitle,
-                                    taskContent: response.taskContent,
-                                    taskDate: response.taskDate,
-                                }
+            setTasks(prevState =>
+                prevState.map(item =>
+                    item.docID === taskID
+                        ? {
+                            ...item,
+                            taskData: {
+                                ...item.taskData,
+                                taskTitle: response.taskTitle,
+                                taskContent: response.taskContent,
+                                taskDate: response.taskDate,
                             }
-                            : item
-                    )
-                );
+                        }
+                        : item
+                )
+            );
 
-                toast.success("Task updated successfully!");
-            }
-        } catch (error) {
+            toast.success("Task updated successfully!");
+        } else {
             // error message
-            toast.error('There was an error while updating task')
+            toast.error('There was an error while updating task');
         }
     }
 
